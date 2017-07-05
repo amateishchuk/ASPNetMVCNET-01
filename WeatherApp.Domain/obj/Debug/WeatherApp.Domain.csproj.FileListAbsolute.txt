@@ -1,0 +1,5 @@
+C:\Users\amate\Desktop\Academy Binary Studio\WeatherApp.Domain\bin\Debug\WeatherApp.Domain.dll
+C:\Users\amate\Desktop\Academy Binary Studio\WeatherApp.Domain\bin\Debug\WeatherApp.Domain.pdb
+C:\Users\amate\Desktop\Academy Binary Studio\WeatherApp.Domain\obj\Debug\WeatherApp.Domain.csprojResolveAssemblyReference.cache
+C:\Users\amate\Desktop\Academy Binary Studio\WeatherApp.Domain\obj\Debug\WeatherApp.Domain.dll
+C:\Users\amate\Desktop\Academy Binary Studio\WeatherApp.Domain\obj\Debug\WeatherApp.Domain.pdb
