@@ -5,7 +5,7 @@
 }
 
 <div class="w3-col s12 m12 l3">
-    <h1>@Model.city.name</h1>
+    <h1>@Model.city.name (@Model.city.country)</h1>
 
     @using (Html.BeginForm("ShowWeather", "Weather"))
     {
