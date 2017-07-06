@@ -3,7 +3,6 @@
 @{ 
     ViewBag.Title = Model.city.name;
 }
-
 <div class="w3-col s12 m12 l3">
     <h1>@Model.city.name (@Model.city.country)</h1>
 
@@ -57,17 +56,17 @@
                     </td>
                     <td>
                         <ul>
-                            <li><small>Morning:</small> @Model.list[i].temp.morn °C</li>
-                            <li><small>Day:</small> @Model.list[i].temp.day °C</li>
-                            <li><small>Evening:</small> @Model.list[i].temp.eve °C</li>
-                            <li><small>Night:</small> @Model.list[i].temp.night °C</li>
-                            <li><small>Min:</small> @Model.list[i].temp.min °C</li>
-                            <li><small>Max:</small> @Model.list[i].temp.max °C</li>
+                            <li><small>Morning:</small> @Model.list[i].temp.morn°C</li>
+                            <li><small>Day:</small> @Model.list[i].temp.day°C</li>
+                            <li><small>Evening:</small> @Model.list[i].temp.eve°C</li>
+                            <li><small>Night:</small> @Model.list[i].temp.night°C</li>
+                            <li><small>Min:</small> @Model.list[i].temp.min°C</li>
+                            <li><small>Max:</small> @Model.list[i].temp.max°C</li>
                         </ul>
                     </td>
                     <td>@Model.list[i].humidity %</td>
                     <td>@Model.list[i].pressure Pa</td>
-                    <td>@Model.list[i].speed m/s @Model.list[i].deg °</td>
+                    <td>@Model.list[i].speed m/s @Model.list[i].deg°</td>
                     <td>@Model.list[i].clouds %</td>
                 </tr>
             }
