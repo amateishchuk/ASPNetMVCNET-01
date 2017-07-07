@@ -5,20 +5,21 @@ using System.Web;
 using System.Web.Mvc;
 using WeatherApp.Services;
 using WeatherApp.Domain.Concrete;
+using WeatherApp.Domain.Abstract;
 
 namespace WeatherApp.Controllers
 {
     public class WeatherController : Controller
     {
-        ServiceOWM service;
+        IWeather weatherService;
 
-        public WeatherController()
+        public WeatherController(IWeather wService)
         {
-            service = new ServiceOWM();
+            weatherService = wService;
         }
         public ActionResult ShowWeather(string city = "Kiev", int qtyDays = 1)
         {
-            WeatherOWM result = service.GetWeatherInfo(city, qtyDays);
+            WeatherOwm result = weatherService.GetWeatherInfo(city, qtyDays);
             return View(result);
         }
     }
