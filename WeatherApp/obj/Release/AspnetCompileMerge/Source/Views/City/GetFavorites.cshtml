@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<WeatherApp.Domain.Entities.City>
 
-<ul class="w3-ul w3-left-align">
-    <li><h2>Favorite cities:</h2></li>
+<ul class="w3-ul">
+    <li><h3>Favorite cities:</h3></li>
     @foreach(var city in Model)
     {
-        <li>
+        <li class="w3-left-align">
             <a href="@Url.Action("Edit", "City", new { id = city.Id })"><img class="small-icon" src="~/Content/settings.png" title="Edit" /></a>
             @Html.ActionLink(city.Name, "ShowWeather", "Weather", new { city = city.Name }, null)
         </li>

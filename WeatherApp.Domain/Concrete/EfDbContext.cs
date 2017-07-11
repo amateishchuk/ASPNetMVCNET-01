@@ -41,7 +41,7 @@ namespace WeatherApp.Domain.Concrete
 
     }
 
-    public class DbInitializer : CreateDatabaseIfNotExists<EfDbContext>
+    public class DbInitializer : DropCreateDatabaseIfModelChanges<EfDbContext>
     {
         protected override void Seed(EfDbContext context)
         {
