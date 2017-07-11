@@ -10,3 +10,8 @@ C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\bin\Release\Ne
 C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\obj\Release\WeatherApp.Domain.csprojResolveAssemblyReference.cache
 C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\obj\Release\WeatherApp.Domain.dll
 C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\obj\Release\WeatherApp.Domain.pdb
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\bin\Release\WeatherApp.Domain.dll.config
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\bin\Release\EntityFramework.dll
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\bin\Release\EntityFramework.xml
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\bin\Release\EntityFramework.SqlServer.xml

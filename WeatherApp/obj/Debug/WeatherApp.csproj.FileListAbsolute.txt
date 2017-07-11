@@ -51,3 +51,8 @@ C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp\bin\System.Web.Webpag
 C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp\bin\System.Web.Webpages.Razor.xml
 C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp\bin\System.Web.Helpers.xml
 C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp\bin\System.Web.Mvc.xml
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp\bin\EntityFramework.dll
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp\bin\EntityFramework.SqlServer.dll
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp\bin\WeatherApp.Domain.dll.config
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp\bin\EntityFramework.xml
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp\bin\EntityFramework.SqlServer.xml

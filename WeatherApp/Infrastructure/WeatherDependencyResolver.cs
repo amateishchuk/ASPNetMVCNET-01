@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WeatherApp.Domain.Abstract;
-using WeatherApp.Services;
+using WeatherApp.Domain.Concrete;
 
 namespace WeatherApp.Infrastructure
 {
@@ -27,7 +27,8 @@ namespace WeatherApp.Infrastructure
         }
         private void AddBindings()
         {
-            kernel.Bind<IWeather>().To<ServiceOwm>();
+            kernel.Bind<IWeatherService>().To<ServiceOwm>();
+            kernel.Bind<IRepository>().To<EfRepository>();
         }
     }
 }

@@ -1,0 +1,19 @@
+﻿@model WeatherApp.Domain.Entities.City
+
+@{
+    ViewBag.Title = "Edit " + Model.Name;
+}
+
+<div class="w3-display-middle">
+    @using (Html.BeginForm())
+    {
+        <div class="w3-group">
+            @Html.HiddenFor(model => model.Id)            
+            <input type="text" value="@Model.Name" class="w3-input w3-round-large" name="Name" placeholder="Input city name" required>            
+            <div class="w3-section">
+                <button type="submit" class="w3-button w3-ripple w3-blue w3-round-large">Save changes</button>
+                <a class="w3-button w3-ripple w3-white w3-round-large" href="@Url.Action("ShowWeather", "Weather")">Back to main</a>
+            </div>
+        </div>
+    }
+</div>

@@ -1,4 +1,4 @@
-﻿@model WeatherApp.Domain.Concrete.WeatherOwm
+﻿@model WeatherApp.OwmService.WeatherOwm
 
 @{ 
     ViewBag.Title = Model.City.Name;
@@ -6,37 +6,24 @@
 <div class="w3-col s12 m12 l3">
     <h1>@Model.City.Name (@Model.City.Country)</h1>
 
-    @using (Html.BeginForm("ShowWeather", "Weather"))
+    @using (Html.BeginForm())
     {
         <div class="w3-group">
-            <input type="text" class="w3-input" name="city" placeholder="Input city name" required>
+            <input type="text" class="w3-input w3-round-large" name="city" placeholder="Input city name" required>
             @Html.Hidden("qtyDays", Model.City.Name)
-            <button type="submit" class="w3-button w3-block w3-ripple w3-orange">Show</button>
+            <button type="submit" class="w3-button w3-block w3-ripple w3-orange w3-round-large">Show</button>
         </div>
     }
-    <ul class="w3-ul">
-        <li>
-            @Html.RouteLink("Kiev", "Default", new { city = "Kiev", qtyDays = Model.List.Count })
-        </li>
-        <li>
-            @Html.RouteLink("Lviv", "Default", new { city = "Lviv", qtyDays = Model.List.Count })
-        </li>
-        <li>
-            @Html.RouteLink("Kharkiv", "Default", new { city = "Kharkiv", qtyDays = Model.List.Count })
-        </li>
-        <li>
-            @Html.RouteLink("Dnipropetrovsk", "Default", new { city = "Dnipropetrovsk", qtyDays = Model.List.Count })
-        </li>
-        <li>
-            @Html.RouteLink("Odessa", "Default", new { city = "Odessa", qtyDays = Model.List.Count })
-        </li>
-    </ul>
+    @Html.Action("GetFavorites", "City", new { qtyDays = Model.Cnt })
+    @Html.Action("GetHistory", "WeatherHistory")
 </div>
 <div class="w3-col l9">
     <p>
-        @Html.RouteLink("1 day", "Default", new { city = Model.City.Name, qtyDays = 1 }, new { @class = Model.Cnt == 1 ? "underline" : "" }) | 
-        @Html.RouteLink("3 days", "Default", new { city = Model.City.Name, qtyDays = 3 }, new { @class = Model.Cnt == 3 ? "underline" : "" }) | 
-        @Html.RouteLink("7 days", "Default", new { city = Model.City.Name, qtyDays = 7 }, new { @class = Model.Cnt == 7 ? "underline" : "" })
+        <span class="days-selector">
+            @Html.RouteLink("1 day", "CityAndQtyDays", new { city = Model.City.Name, qtyDays = 1 }, new { @class = Model.Cnt == 1 ? "underline" : "" }) |
+            @Html.RouteLink("3 days", "CityAndQtyDays", new { city = Model.City.Name, qtyDays = 3 }, new { @class = Model.Cnt == 3 ? "underline" : "" }) |
+            @Html.RouteLink("7 days", "CityAndQtyDays", new { city = Model.City.Name, qtyDays = 7 }, new { @class = Model.Cnt == 7 ? "underline" : "" })
+        </span>
     </p>
     <table class="w3-table w3-bordered w3-centered">
         <tbody>

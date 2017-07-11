@@ -14,17 +14,16 @@ namespace WeatherApp
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute("OnlyCity", "{city}", new { controller = "Weather", action = "ShowWeather" },
+            routes.MapRoute("History", "History", new { controller = "WeatherHistory", action = "GetExtendedHistory" });
+     
+            routes.MapRoute("OnlyCity", "Weather/{city}", new { controller = "Weather", action = "ShowWeather" },
                 new { city = new AlphaRouteConstraint() });
-            
-            routes.MapRoute(
-                name: "Default",
-                url: "{city}/{qtyDays}",
-                defaults: new { controller = "Weather", action = "ShowWeather" },
-                constraints: new { city = new AlphaRouteConstraint(), qtyDays = new RangeRouteConstraint(1, 17)}
-            );
 
-            routes.MapRoute("Empty", "", new { controller = "Weather", action = "ShowWeather" });
+            routes.MapRoute("CityAndQtyDays", "Weather/{city}/{qtyDays}",
+                defaults: new { controller = "Weather", action = "ShowWeather" },
+                constraints: new { city = new AlphaRouteConstraint(), qtyDays = new RangeRouteConstraint(1, 17) });
+
+            routes.MapRoute("Default", "{controller}/{action}/{id}", new { controller = "Weather", action = "ShowWeather", id = UrlParameter.Optional });
         }
     }
 }

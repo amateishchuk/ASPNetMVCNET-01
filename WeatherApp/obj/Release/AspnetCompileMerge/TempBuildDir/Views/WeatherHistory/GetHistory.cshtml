@@ -1,0 +1,18 @@
+﻿@model IEnumerable<WeatherApp.Domain.Entities.HistoryRecord>
+
+<ul class="w3-ul">
+    <li><h2>Recently viewed:</h2></li>
+    @foreach (var record in Model)
+    {
+        <li>
+            @record.DateTime.ToString("g") @record.City
+        </li>
+    }
+    <li>
+        <span class="w3-right-align">
+            <i>
+                @Html.ActionLink("View more...","GetExtendedHistory", "WeatherHistory")
+            </i>
+        </span>
+    </li>
+</ul>

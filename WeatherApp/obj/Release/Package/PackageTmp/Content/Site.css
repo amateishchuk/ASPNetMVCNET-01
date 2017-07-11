@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-image: url(http://www.cadtutor.net/download/raster/sky_03_source/sky-21.jpg);
+    background-image: url(http://cdn.pcwallart.com/images/dusk-sky-stars-wallpaper-2.jpg);
     background-attachment: fixed;
     color: white;
     text-align: center;
@@ -9,11 +9,8 @@
 a{
     text-decoration:none;
 }
-a:hover, footer{
-    color: black;
-}
-input, li, button{
-    border-radius: 10px;
+a:hover{
+    color: grey;
 }
 input{
     text-align:center;
@@ -21,7 +18,7 @@ input{
 li {
     list-style-type: none;
 }
-p{
+.days-selector{
     font-size: 25px;
 }
 img{
@@ -35,19 +32,22 @@ hr {
     margin-left: 40px;
     margin-right: 40px;
 }
-footer {
-    position: fixed;
-    bottom: 30px;
-    width: 100%;
-}
 footer p {
     font-size: 15px;
 }
 .underline{
-    color: black;
     text-decoration: underline;
+    font-style: italic;
 }
 h1 img{
     width: 38px;
     height:38px;
+}
+table{
+    text-align: center;
+    vertical-align:middle;
+}
+.small-icon{
+    width: 18px;
+    height:18px;
 }

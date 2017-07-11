@@ -1,2 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters />
+<parameters>
+  <parameter name="WeatherOwmDb-Web.config Connection String" description="WeatherOwmDb Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='|DataDirectory|\OwmDb.mdf';Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\amate\\Desktop\\Academy\ Binary\ Studio\\01\\WeatherApp\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='WeatherOwmDb']/@connectionString" />
+  </parameter>
+</parameters>
