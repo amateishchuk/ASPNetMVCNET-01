@@ -4,15 +4,15 @@
     <li><h2>Recently viewed:</h2></li>
     @foreach (var record in Model)
     {
-        <li>
+        <li class="w3-left-align">
             @record.DateTime.ToString("g") @record.City
         </li>
     }
-    <li>
-        <span class="w3-right-align">
+    <li class="w3-right-align">
+        <small>
             <i>
-                @Html.ActionLink("View more...","GetExtendedHistory", "WeatherHistory")
+                @Html.ActionLink("View more...", "GetExtendedHistory", "WeatherHistory")
             </i>
-        </span>
+        </small>
     </li>
 </ul>

@@ -9,14 +9,13 @@
     <link rel="shortcut icon" href="~/Content/Sunny.png" type="image/png">
 </head>
 <body>
-    <h1><img src="~/Content/Sunny.png" title="Sun" />@Html.RouteLink("WeatherOWM", "OnlyCity")</h1>
-    <hr />
+    <h1><img src="~/Content/Sunny.png" title="Sun" />@Html.ActionLink("WeatherOWM", "ShowWeather", "Weather")</h1>
     <div class="w3-row">
         <div class="w3-container">
             @RenderBody()
         </div>
     </div>
-    <footer>
+    <footer>        
         <p>&copy; @DateTime.Now.Year - WeatherOWM App</p>
     </footer>
 </body>

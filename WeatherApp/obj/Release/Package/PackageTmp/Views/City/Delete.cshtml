@@ -10,8 +10,9 @@
             @Html.HiddenFor(model => model.Id)            
             Delete @Html.DisplayFor(model => model.Name) from favorite?
             <div class="w3-section">
-                <button type="submit" class="w3-button w3-ripple w3-blue w3-round-large">Delete</button>
-                <a class="w3-button w3-ripple w3-white w3-round-large" href="@Url.Action("ShowWeather", "Weather")">Back to main</a>
+                <button type="submit" class="w3-button w3-block w3-ripple w3-red w3-round-large">Confirm</button>
+                @Html.ActionLink("Back to edit", "Edit", "City", new { id = Model.Id }, new { @class = "w3-button w3-block w3-ripple w3-blue w3-round-large" })
+                @Html.ActionLink("Back to main", "ShowWeather", "Weather", null, new { @class = "w3-btn w3-block w3-white w3-border w3-border-blue w3-text-blue w3-round-large" }) 
             </div>
         </div>
     }
