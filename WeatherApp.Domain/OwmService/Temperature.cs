@@ -1,4 +1,8 @@
-﻿namespace WeatherApp.OwmService
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using WeatherApp.Domain.OwmService;
+
+namespace WeatherApp.OwmService
 {
     public class Temperature
     {
@@ -9,5 +13,7 @@
         public double Night { get; set; }
         public double Eve { get; set; }
         public double Morn { get; set; }
+
+        public virtual DayData DayData { get; set; }
     }
 }

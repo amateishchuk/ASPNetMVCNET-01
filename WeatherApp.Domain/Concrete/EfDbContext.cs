@@ -20,8 +20,24 @@ namespace WeatherApp.Domain.Concrete
 
         public DbSet<City> FavoriteCities { get; set; }
         public DbSet<HistoryRecord> WeatherHistories { get; set; }
-        //public DbSet<DayData> DayDatas { get; set; }
-        //public DbSet<Temperature> Tempes { get; set; }
+
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<DayData>()
+                .HasRequired(d => d.Temp)
+                .WithRequiredPrincipal(t => t.DayData)
+                .WillCascadeOnDelete(true);
+
+            modelBuilder.Entity<HistoryRecord>()
+                .HasRequired(r => r.DayData)
+                .WithRequiredPrincipal(d => d.HistoryRecord)
+                .WillCascadeOnDelete(true);
+
+                
+
+            base.OnModelCreating(modelBuilder);
+        }
 
     }
 

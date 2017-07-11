@@ -12,8 +12,8 @@ namespace WeatherApp.Domain.Entities
     {
         public int Id { get; set; }
         public string City { get; set; }
-        //public int? DayDataId { get; set; }
-        public virtual DayData DayData { get; set; }
         public DateTime DateTime { get; set; }
+        public virtual DayData DayData { get; set; }
+        
     }
 }
