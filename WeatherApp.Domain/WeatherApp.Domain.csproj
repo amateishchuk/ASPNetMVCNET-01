@@ -53,10 +53,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="Abstract\IUnitOfWork.cs" />
     <Compile Include="Abstract\IWeather.cs" />
+    <Compile Include="Concrete\CityRepository.cs" />
     <Compile Include="Concrete\EfDbContext.cs" />
+    <Compile Include="Concrete\EfUnitOfWork.cs" />
+    <Compile Include="Concrete\HistoryRecordRepository.cs" />
     <Compile Include="Entities\City.cs" />
-    <Compile Include="Concrete\EfRepository.cs" />
     <Compile Include="Entities\DayData.cs" />
     <Compile Include="Entities\HistoryRecord.cs" />
     <Compile Include="OwmService\Coordinate.cs" />

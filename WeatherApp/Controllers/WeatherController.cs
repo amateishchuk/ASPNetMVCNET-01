@@ -9,12 +9,13 @@ namespace WeatherApp.Controllers
     public class WeatherController : Controller
     {
         IWeatherService weatherService;
-        IRepository repository;
+        IUnitOfWork db;
 
-        public WeatherController(IWeatherService wService, IRepository repo)
+        public WeatherController(IWeatherService wService, IUnitOfWork dbService)
         {
             weatherService = wService;
-            repository = repo;
+            db = dbService;
+            
         }
         public ActionResult ShowWeather(string city = "Kiev", int qtyDays = 7)
         {
@@ -25,7 +26,8 @@ namespace WeatherApp.Controllers
                 DateTime = DateTime.Now,
                 DayData = result.List[0],
             };
-            repository.AddLastRequestToWeatherHistory(record);
+            db.HistoryRecords.Add(record);
+            db.Save();
 
             return View(result);
         }

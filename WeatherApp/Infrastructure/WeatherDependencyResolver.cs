@@ -1,11 +1,13 @@
 ﻿using Ninject;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WeatherApp.Domain.Abstract;
 using WeatherApp.Domain.Concrete;
+using WeatherApp.Domain.Entities;
 
 namespace WeatherApp.Infrastructure
 {
@@ -28,7 +30,8 @@ namespace WeatherApp.Infrastructure
         private void AddBindings()
         {
             kernel.Bind<IWeatherService>().To<ServiceOwm>();
-            kernel.Bind<IRepository>().To<EfRepository>();
+            kernel.Bind<IUnitOfWork>().To<EfUnitOfWork>()
+                .WithConstructorArgument("connectionString", "name=WeatherOwmDb");
         }
     }
 }

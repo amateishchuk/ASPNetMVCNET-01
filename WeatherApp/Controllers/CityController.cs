@@ -8,49 +8,55 @@ namespace WeatherApp.Controllers
 {
     public class CityController : Controller
     {
-        IRepository repository;
+        IUnitOfWork db;
 
-        public CityController(IRepository repo)
+        public CityController(IUnitOfWork dbService)
         {
-            repository = repo;
+            db = dbService;
         }
 
-        public ActionResult GetFavorites(int qtyDays)
+        public ActionResult GetFavorites()
         {
-            return PartialView(repository.FavoriteCities);            
+            return PartialView(db.Cities.GetAll());            
         }
 
         [HttpPost]
         public ActionResult Add(string city)
         {
-            repository.AddToFavorites(city);
+            City newCity = new City { Name = city };
+
+            db.Cities.Add(newCity);
+            db.Save();
 
             return RedirectToAction("ShowWeather", "Weather");
         }
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            return View(repository.GetCityById(id));
+            return View(db.Cities.Get(id));
         }
 
         [HttpPost]
         public ActionResult Edit(City city)
         {
-            repository.UpdateExists(city);
+            db.Cities.Update(city);
+            db.Save();
+
             return RedirectToAction("ShowWeather", "Weather");
         }
 
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            var city = repository.GetCityById(id);
+            var city = db.Cities.Get(id);
             return View(city);
         }
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirm(int id)
         {
-            repository.DeleteFromFavorites(id);
+            db.Cities.Delete(id);
+            db.Save();
             return RedirectToAction("ShowWeather", "Weather");
         }
     }

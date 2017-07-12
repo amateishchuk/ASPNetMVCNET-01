@@ -9,19 +9,19 @@ namespace WeatherApp.Controllers
 {
     public class WeatherHistoryController : Controller
     {
-        IRepository repository;
-        public WeatherHistoryController(IRepository repo)
+        IUnitOfWork db;
+        public WeatherHistoryController(IUnitOfWork dbService)
         {
-            repository = repo;
+            db = dbService;
         }
 
         public ActionResult GetHistory()
         {
-            return PartialView(repository.LastRequests.Take(5));
+            return PartialView(db.HistoryRecords.GetAll().Take(5));
         }
         public ActionResult GetExtendedHistory()
         {
-            var result = repository.LastRequests;
+            var result = db.HistoryRecords.GetAll();
             return View(result);
         }
     }

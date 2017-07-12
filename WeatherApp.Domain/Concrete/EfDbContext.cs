@@ -13,15 +13,12 @@ namespace WeatherApp.Domain.Concrete
             Database.SetInitializer(new DbInitializer());
         }
 
-        public EfDbContext() : base("name=WeatherOwmDb")
-        {
-            
-        }
+        // "name=WeatherOwmDb"
+        public EfDbContext(string connectionString) : base(connectionString) {  }
 
-        public DbSet<City> FavoriteCities { get; set; }
+        public DbSet<City> Cities { get; set; }
         public DbSet<HistoryRecord> WeatherHistories { get; set; }
-
-
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<DayData>()
@@ -51,7 +48,7 @@ namespace WeatherApp.Domain.Concrete
             var dnipropetrovsk = new City { Name = "Dnipropetrovsk" };
             var odessa = new City { Name = "Odessa" };
 
-            context.FavoriteCities.AddRange(new List<City> {kiev, lviv, kharkiv, dnipropetrovsk, odessa});
+            context.Cities.AddRange(new List<City> {kiev, lviv, kharkiv, dnipropetrovsk, odessa});
             context.SaveChanges();
         }
     }

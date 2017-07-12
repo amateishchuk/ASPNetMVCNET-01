@@ -12,6 +12,7 @@ namespace WeatherApp.App_Start
     using Ninject.Web.Common;
     using System.Web.Mvc;
     using WeatherApp.Infrastructure;
+    using Ninject.Modules;
 
     public static class NinjectWebCommon 
     {
@@ -40,7 +41,7 @@ namespace WeatherApp.App_Start
         /// </summary>
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
-        {
+        {            
             var kernel = new StandardKernel();
             try
             {
