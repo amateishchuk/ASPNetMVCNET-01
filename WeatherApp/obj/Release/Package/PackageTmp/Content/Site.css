@@ -32,9 +32,6 @@ hr {
     margin-left: 40px;
     margin-right: 40px;
 }
-footer p {
-    font-size: 15px;
-}
 .underline{
     text-decoration: underline;
     font-style: italic;
@@ -45,7 +42,6 @@ h1 img{
 }
 table{
     text-align: center;
-    vertical-align:middle;
 }
 .small-icon{
     width: 18px;

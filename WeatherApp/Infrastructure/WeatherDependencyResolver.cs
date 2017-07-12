@@ -31,7 +31,7 @@ namespace WeatherApp.Infrastructure
         {
             kernel.Bind<IWeatherService>().To<ServiceOwm>();
             kernel.Bind<IUnitOfWork>().To<EfUnitOfWork>()
-                .WithConstructorArgument("connectionString", "name=WeatherOwmDb");
+                .WithConstructorArgument("connectionString", "name=WeatherOwmDbLocal");
         }
     }
 }

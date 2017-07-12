@@ -10,13 +10,11 @@
 </head>
 <body>
     <h1><img src="~/Content/Sunny.png" title="Sun" />@Html.ActionLink("WeatherOWM", "ShowWeather", "Weather")</h1>
-    <div class="w3-row">
-        <div class="w3-container">
-            @RenderBody()
-        </div>
+    <div class="w3-container w3-content w3-margin-bottom">
+        @RenderBody()
     </div>
-    <footer>        
-        <p>&copy; @DateTime.Now.Year - WeatherOWM App</p>
+    <footer class="w3-margin-bottom"r>        
+        &copy; @DateTime.Now.Year - WeatherOWM App
     </footer>
 </body>
 </html>
