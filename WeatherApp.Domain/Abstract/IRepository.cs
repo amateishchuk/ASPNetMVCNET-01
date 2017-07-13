@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using WeatherApp.Domain.Concrete;
-using WeatherApp.Domain.Entities;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace WeatherApp.Domain.Abstract
 {
     public interface IRepository<T> where T : class
     {
-        void Add(T item);
-        void Update(T item);
-        void Delete(int id);
-        T Get(int id);
         IEnumerable<T> GetAll();
-        IEnumerable<T> Find(Func<T, Boolean> predicate);
+        IEnumerable<T> Get(Func<T, bool> predicate);
+        T Find(Func<T, bool> predicate);
+        void Insert(T item);
+        void Update(T item);
+        void Delete(T item);
+        T First { get; }
+        int Count { get; }
     }
 }

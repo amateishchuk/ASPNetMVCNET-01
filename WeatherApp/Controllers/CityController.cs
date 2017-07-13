@@ -1,62 +1,80 @@
-﻿using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using WeatherApp.Domain.Abstract;
-using WeatherApp.Domain.Concrete;
 using WeatherApp.Domain.Entities;
 
 namespace WeatherApp.Controllers
 {
     public class CityController : Controller
     {
-        IUnitOfWork db;
+        readonly IUnitOfWork uow;
 
-        public CityController(IUnitOfWork dbService)
+        public CityController(IUnitOfWork unitOfWork)
         {
-            db = dbService;
+            this.uow = unitOfWork;
         }
 
         public ActionResult GetFavorites()
         {
-            return PartialView(db.Cities.GetAll());            
+            var cities = uow.Repository<City>().GetAll();
+            return PartialView(cities);              
         }
 
         [HttpPost]
         public ActionResult Add(string city)
-        {
-            City newCity = new City { Name = city };
+        {            
+            city = city.Trim();
 
-            db.Cities.Add(newCity);
-            db.Save();
+            if (string.IsNullOrEmpty(city))
+                return HttpNotFound();
+
+            var existCity = uow.Repository<City>().Find(c => c.Name == city);
+            if (existCity == null)
+            {
+                uow.Repository<City>().Insert(new City { Name = city });
+                uow.SaveChanges();
+            }
 
             return RedirectToAction("ShowWeather", "Weather");
         }
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            return View(db.Cities.Get(id));
+            var city = uow.Repository<City>().Find(c => c.Id == id);
+            if (city == null)
+                return HttpNotFound();
+
+            return View(city);    
         }
 
         [HttpPost]
         public ActionResult Edit(City city)
         {
-            db.Cities.Update(city);
-            db.Save();
+            uow.Repository<City>().Update(city);
+            uow.SaveChanges();
 
             return RedirectToAction("ShowWeather", "Weather");
         }
 
         [HttpGet]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            var city = db.Cities.Get(id);
+            var city = uow.Repository<City>().Find(c => c.Id == id);
+            if (city == null)
+                return HttpNotFound();
+
             return View(city);
         }
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirm(int id)
         {
-            db.Cities.Delete(id);
-            db.Save();
+            var city = uow.Repository<City>().Find(c => c.Id == id);
+            if (city != null)
+            {
+                uow.Repository<City>().Delete(city);
+                uow.SaveChanges();
+            }
+
             return RedirectToAction("ShowWeather", "Weather");
         }
     }

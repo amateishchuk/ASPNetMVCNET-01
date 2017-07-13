@@ -21,7 +21,7 @@ namespace WeatherApp
 
             routes.MapRoute("CityAndQtyDays", "Weather/{city}/{qtyDays}",
                 defaults: new { controller = "Weather", action = "ShowWeather" },
-                constraints: new { city = new AlphaRouteConstraint(), qtyDays = new RangeRouteConstraint(1, 17) });
+                constraints: new { city = new AlphaRouteConstraint(), qtyDays = new RangeRouteConstraint(1, 16) });
 
             routes.MapRoute("Default", "{controller}/{action}/{id}", new { controller = "Weather", action = "ShowWeather", id = UrlParameter.Optional });
         }

@@ -12,7 +12,6 @@ namespace WeatherApp.Domain.Concrete
         {
             Database.SetInitializer(new DbInitializer());
         }
-
         // "name=WeatherOwmDb"
         public EfDbContext(string connectionString) : base(connectionString) {  }
 
@@ -23,12 +22,12 @@ namespace WeatherApp.Domain.Concrete
         {
             modelBuilder.Entity<DayData>()
                 .HasRequired(d => d.Temp)
-                .WithRequiredPrincipal(t => t.DayData)
+                .WithOptional(t => t.DayData)
                 .WillCascadeOnDelete(true);
 
             modelBuilder.Entity<HistoryRecord>()
                 .HasRequired(r => r.DayData)
-                .WithRequiredPrincipal(d => d.HistoryRecord)
+                .WithOptional(d => d.HistoryRecord)
                 .WillCascadeOnDelete(true);
 
                 

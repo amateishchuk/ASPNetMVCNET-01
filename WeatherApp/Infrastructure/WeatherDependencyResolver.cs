@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using WeatherApp.Domain.Abstract;
 using WeatherApp.Domain.Concrete;
@@ -29,8 +30,10 @@ namespace WeatherApp.Infrastructure
         }
         private void AddBindings()
         {
-            kernel.Bind<IWeatherService>().To<ServiceOwm>();
-            kernel.Bind<IUnitOfWork>().To<EfUnitOfWork>()
+            kernel.Bind<IWeatherService>().To<WeatherServiceOwm>()
+                .WithConstructorArgument("apiUri", WebConfigurationManager.AppSettings["ApiUriOWM"])
+                .WithConstructorArgument("apiKey", WebConfigurationManager.AppSettings["ApiKeyOWM"]);
+            kernel.Bind<IUnitOfWork>().To<UnitOfWork>()
                 .WithConstructorArgument("connectionString", "name=WeatherOwmDbLocal");
         }
     }

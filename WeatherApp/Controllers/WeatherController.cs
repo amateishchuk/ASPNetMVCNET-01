@@ -8,28 +8,44 @@ namespace WeatherApp.Controllers
 {
     public class WeatherController : Controller
     {
-        IWeatherService weatherService;
-        IUnitOfWork db;
+        readonly IWeatherService weatherService;
+        readonly IUnitOfWork uow;
 
-        public WeatherController(IWeatherService wService, IUnitOfWork dbService)
+        public WeatherController(IWeatherService wService, IUnitOfWork uow)
         {
             weatherService = wService;
-            db = dbService;
-            
+            this.uow = uow;
         }
         public ActionResult ShowWeather(string city = "Kiev", int qtyDays = 7)
         {
-            var result = weatherService.GetWeatherInfo(city, qtyDays);
-            var record = new HistoryRecord
+            try
             {
-                City = result.City.Name,
-                DateTime = DateTime.Now,
-                DayData = result.List[0],
-            };
-            db.HistoryRecords.Add(record);
-            db.Save();
+                var result = weatherService.GetWeatherInfo(city, qtyDays);
+                var record = new HistoryRecord
+                {
+                    City = result.City.Name,
+                    DateTime = DateTime.Now,
+                    DayData = result.List[0],
+                };
 
-            return View(result);
+                if (uow.Repository<HistoryRecord>().Count > 14)
+                {
+                    var firstRecord = uow.Repository<HistoryRecord>().First;
+                    uow.Repository<HistoryRecord>().Delete(firstRecord);
+                }
+                uow.Repository<HistoryRecord>().Insert(record);
+                uow.SaveChanges();
+
+                return View(result);
+            }
+            catch (ArgumentNullException)
+            {
+                return HttpNotFound("City name is incorrect");
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return HttpNotFound("Quantity days must be in range beetwen 1 and 16");
+            }            
         }
     }
 }

@@ -52,18 +52,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IEntity.cs" />
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Abstract\IUnitOfWork.cs" />
-    <Compile Include="Abstract\IWeather.cs" />
-    <Compile Include="Concrete\CityRepository.cs" />
+    <Compile Include="Abstract\IWeatherService.cs" />
     <Compile Include="Concrete\EfDbContext.cs" />
-    <Compile Include="Concrete\EfUnitOfWork.cs" />
-    <Compile Include="Concrete\HistoryRecordRepository.cs" />
+    <Compile Include="Concrete\Repository.cs" />
+    <Compile Include="Concrete\UnitOfWork.cs" />
+    <Compile Include="Concrete\WeatherServiceOwm.cs" />
     <Compile Include="Entities\City.cs" />
     <Compile Include="Entities\DayData.cs" />
     <Compile Include="Entities\HistoryRecord.cs" />
     <Compile Include="OwmService\Coordinate.cs" />
-    <Compile Include="Concrete\ServiceOwm.cs" />
     <Compile Include="OwmService\Temperature.cs" />
     <Compile Include="OwmService\Weather.cs" />
     <Compile Include="OwmService\WeatherOwm.cs" />

@@ -4,25 +4,28 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WeatherApp.Domain.Abstract;
+using WeatherApp.Domain.Entities;
 
 namespace WeatherApp.Controllers
 {
     public class WeatherHistoryController : Controller
     {
-        IUnitOfWork db;
-        public WeatherHistoryController(IUnitOfWork dbService)
+        IUnitOfWork uow;
+        public WeatherHistoryController(IUnitOfWork uow)
         {
-            db = dbService;
+            this.uow = uow;
         }
 
         public ActionResult GetHistory()
         {
-            return PartialView(db.HistoryRecords.GetAll().Take(5));
+            var smallList = uow.Repository<HistoryRecord>().GetAll().OrderByDescending(r => r.Id).Take(5);
+
+            return PartialView(smallList);
         }
         public ActionResult GetExtendedHistory()
         {
-            var result = db.HistoryRecords.GetAll();
-            return View(result);
+            var fullHistory = uow.Repository<HistoryRecord>().GetAll().OrderByDescending(r => r.Id);
+            return View(fullHistory);
         }
     }
 }
