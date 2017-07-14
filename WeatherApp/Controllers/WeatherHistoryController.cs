@@ -18,13 +18,12 @@ namespace WeatherApp.Controllers
 
         public ActionResult GetHistory()
         {
-            var smallList = uow.Repository<HistoryRecord>().GetAll().OrderByDescending(r => r.Id).Take(5);
-
+            var smallList = uow.History.GetAll().Take(5);
             return PartialView(smallList);
         }
         public ActionResult GetExtendedHistory()
         {
-            var fullHistory = uow.Repository<HistoryRecord>().GetAll().OrderByDescending(r => r.Id);
+            var fullHistory = uow.History.GetAll();
             return View(fullHistory);
         }
     }

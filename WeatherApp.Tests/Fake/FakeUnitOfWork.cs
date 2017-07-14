@@ -4,30 +4,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WeatherApp.Domain.Abstract;
+using WeatherApp.Domain.Entities;
 using WeatherApp.Tests.Fake;
 
 namespace WeatherApp.Tests
 {
     public class FakeUnitOfWork : IUnitOfWork
     {
-        private readonly Dictionary<Type, object> _repositories = new Dictionary<Type, object>();
+        private IRepository<City> cities;
+        private IRepository<HistoryRecord> history;
 
-        public void SetRepository<T>(IRepository<T> repository) where T : class
+        public IRepository<City> Cities
         {
-            _repositories[typeof(T)] = repository;
+            get
+            {
+                if (cities == null)
+                    cities = new FakeCityRepo();
+                return cities;
+            }
         }
 
-        public IRepository<T> Repository<T>() where T : class
+        public IRepository<HistoryRecord> History
         {
-            object repository;
-            return _repositories.TryGetValue(typeof(T), out repository)
-                       ? (IRepository<T>)repository
-                       : new FakeRepository<T>();
+            get
+            {
+                if (history == null)
+                    history = new FakeHistoryRepo();
+                return history;
+            }
         }
 
         public void SaveChanges()
         {
-
+            //...
         }
     }
 }

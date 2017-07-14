@@ -4,26 +4,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WeatherApp.Domain.Abstract;
+using WeatherApp.Domain.Entities;
 
 namespace WeatherApp.Domain.Concrete
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly EfDbContext dataContext;
+        private readonly EfDbContext context;
+        private IRepository<City> cities;
+        private IRepository<HistoryRecord> history;
         
         public UnitOfWork(string connectionString)
         {
-            dataContext = new EfDbContext(connectionString);
+            context = new EfDbContext(connectionString);
         }
 
-        public IRepository<T> Repository<T>() where T : class
+        public IRepository<City> Cities
         {
-            return new Repository<T>(dataContext);
+            get
+            {
+                if (cities == null)
+                    cities = new CityRepository(context);                    
+                return cities;
+            }
+        }
+
+        public IRepository<HistoryRecord> History
+        {
+            get
+            {
+                if (history == null)
+                    history = new HistoryRepository(context);
+                return history;
+            }
         }
 
         public void SaveChanges()
         {
-            dataContext.SaveChanges();
+            context.SaveChanges();
         }
     }
 }

@@ -22,12 +22,12 @@ namespace WeatherApp.Domain.Concrete
         {
             modelBuilder.Entity<DayData>()
                 .HasRequired(d => d.Temp)
-                .WithOptional(t => t.DayData)
+                .WithRequiredPrincipal(t => t.DayData)
                 .WillCascadeOnDelete(true);
 
             modelBuilder.Entity<HistoryRecord>()
                 .HasRequired(r => r.DayData)
-                .WithOptional(d => d.HistoryRecord)
+                .WithRequiredPrincipal(d => d.HistoryRecord)
                 .WillCascadeOnDelete(true);
 
                 

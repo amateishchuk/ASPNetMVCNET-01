@@ -76,16 +76,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fake\FakeCityRepo.cs" />
+    <Compile Include="Fake\FakeHistoryRepo.cs" />
     <Compile Include="Fake\FakeUnitOfWork.cs" />
     <Compile Include="Fake\FakeWeatherService.cs" />
-    <Compile Include="IntegrationTests\HistoryRecordsTests.cs" />
-    <Compile Include="IntegrationTests\CityTests.cs" />
-    <Compile Include="IntegrationTests\WeatherServiceTests.cs" />
+    <Compile Include="IntegrationTests\CityControllerTests.cs" />
+    <Compile Include="IntegrationTests\WeatherControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Fake\FakeRepository.cs" />
-    <Compile Include="UnitTests\CityTests.cs" />
-    <Compile Include="UnitTests\HistoryRecordTests.cs" />
-    <Compile Include="UnitTests\WeatherServiceTests.cs" />
+    <Compile Include="UnitTests\CityControllerTests.cs" />
+    <Compile Include="UnitTests\WeatherControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

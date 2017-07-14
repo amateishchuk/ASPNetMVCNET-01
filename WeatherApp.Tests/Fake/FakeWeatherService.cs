@@ -15,7 +15,7 @@ namespace WeatherApp.Tests.Fake
     {
         public WeatherOwm GetWeatherInfo(string city, int qtyDays)
         {
-            if (string.IsNullOrWhiteSpace(city) || string.IsNullOrEmpty(city))
+            if (city == null || string.IsNullOrWhiteSpace(city) || string.IsNullOrEmpty(city))
                 throw new ArgumentNullException();
 
             else if (qtyDays < 1 || qtyDays > 15)

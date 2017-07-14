@@ -13,9 +13,9 @@ namespace WeatherApp.Controllers
             this.uow = unitOfWork;
         }
 
-        public ActionResult GetFavorites()
+        public PartialViewResult GetFavorites()
         {
-            var cities = uow.Repository<City>().GetAll();
+            var cities = uow.Cities.GetAll();
             return PartialView(cities);              
         }
 
@@ -27,21 +27,17 @@ namespace WeatherApp.Controllers
             if (string.IsNullOrEmpty(city))
                 return HttpNotFound();
 
-            var existCity = uow.Repository<City>().Find(c => c.Name == city);
-            if (existCity == null)
-            {
-                uow.Repository<City>().Insert(new City { Name = city });
-                uow.SaveChanges();
-            }
+            uow.Cities.Insert(new City { Name = city });
+            uow.SaveChanges();
 
             return RedirectToAction("ShowWeather", "Weather");
         }
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var city = uow.Repository<City>().Find(c => c.Id == id);
+            var city = uow.Cities.Get(id);
             if (city == null)
-                return HttpNotFound();
+                return HttpNotFound("City with specified ID doesn't exist");
 
             return View(city);    
         }
@@ -49,16 +45,16 @@ namespace WeatherApp.Controllers
         [HttpPost]
         public ActionResult Edit(City city)
         {
-            uow.Repository<City>().Update(city);
+            uow.Cities.Update(city);
             uow.SaveChanges();
 
             return RedirectToAction("ShowWeather", "Weather");
         }
 
         [HttpGet]
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            var city = uow.Repository<City>().Find(c => c.Id == id);
+            var city = uow.Cities.Get(id);
             if (city == null)
                 return HttpNotFound();
 
@@ -68,12 +64,8 @@ namespace WeatherApp.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirm(int id)
         {
-            var city = uow.Repository<City>().Find(c => c.Id == id);
-            if (city != null)
-            {
-                uow.Repository<City>().Delete(city);
-                uow.SaveChanges();
-            }
+            uow.Cities.Delete(id);
+            uow.SaveChanges();          
 
             return RedirectToAction("ShowWeather", "Weather");
         }

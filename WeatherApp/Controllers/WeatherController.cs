@@ -28,12 +28,7 @@ namespace WeatherApp.Controllers
                     DayData = result.List[0],
                 };
 
-                if (uow.Repository<HistoryRecord>().Count > 14)
-                {
-                    var firstRecord = uow.Repository<HistoryRecord>().First;
-                    uow.Repository<HistoryRecord>().Delete(firstRecord);
-                }
-                uow.Repository<HistoryRecord>().Insert(record);
+                uow.History.Insert(record);
                 uow.SaveChanges();
 
                 return View(result);
