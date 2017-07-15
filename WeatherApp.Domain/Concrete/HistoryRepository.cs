@@ -23,9 +23,9 @@ namespace WeatherApp.Domain.Concrete
                 context.WeatherHistories.Remove(history);
         }
 
-        public HistoryRecord Get(int id)
+        public HistoryRecord Get(Func<HistoryRecord, bool> predicate)
         {
-            return context.WeatherHistories.FirstOrDefault(h => h.Id == id);
+            return context.WeatherHistories.FirstOrDefault(predicate);
         }
 
         public IEnumerable<HistoryRecord> GetAll()

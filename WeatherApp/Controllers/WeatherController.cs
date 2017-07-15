@@ -8,13 +8,13 @@ namespace WeatherApp.Controllers
 {
     public class WeatherController : Controller
     {
-        readonly IWeatherService weatherService;
-        readonly IUnitOfWork uow;
+        private readonly IWeatherService weatherService;
+        private readonly IUnitOfWork unitOfWork;
 
         public WeatherController(IWeatherService wService, IUnitOfWork uow)
         {
             weatherService = wService;
-            this.uow = uow;
+            this.unitOfWork = uow;
         }
         public ActionResult ShowWeather(string city = "Kiev", int qtyDays = 7)
         {
@@ -28,8 +28,8 @@ namespace WeatherApp.Controllers
                     DayData = result.List[0],
                 };
 
-                uow.History.Insert(record);
-                uow.SaveChanges();
+                unitOfWork.History.Insert(record);
+                unitOfWork.SaveChanges();
 
                 return View(result);
             }
@@ -41,6 +41,11 @@ namespace WeatherApp.Controllers
             {
                 return HttpNotFound("Quantity days must be in range beetwen 1 and 16");
             }            
+        }
+        protected override void Dispose(bool disposing)
+        {
+            unitOfWork.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

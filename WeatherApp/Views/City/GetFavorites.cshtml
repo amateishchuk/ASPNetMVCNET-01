@@ -2,7 +2,7 @@
 
 <ul class="w3-ul">
     <li><h3>Favorite cities:</h3></li>
-    @foreach(var city in Model)
+    @foreach(var city in Model.OrderBy(c=>c.Name))
     {
         <li class="w3-left-align">
             <a href="@Url.Action("Edit", "City", new { id = city.Id })"><img class="small-icon" src="~/Content/settings.png" title="Edit" /></a>

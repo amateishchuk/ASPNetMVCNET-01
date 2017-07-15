@@ -6,16 +6,16 @@ namespace WeatherApp.Controllers
 {
     public class CityController : Controller
     {
-        readonly IUnitOfWork uow;
+        private readonly IUnitOfWork unitOfWork;
 
         public CityController(IUnitOfWork unitOfWork)
         {
-            this.uow = unitOfWork;
+            this.unitOfWork = unitOfWork;
         }
 
         public PartialViewResult GetFavorites()
         {
-            var cities = uow.Cities.GetAll();
+            var cities = unitOfWork.Cities.GetAll();
             return PartialView(cities);              
         }
 
@@ -27,15 +27,15 @@ namespace WeatherApp.Controllers
             if (string.IsNullOrEmpty(city))
                 return HttpNotFound();
 
-            uow.Cities.Insert(new City { Name = city });
-            uow.SaveChanges();
+            unitOfWork.Cities.Insert(new City { Name = city });
+            unitOfWork.SaveChanges();
 
             return RedirectToAction("ShowWeather", "Weather");
         }
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var city = uow.Cities.Get(id);
+            var city = unitOfWork.Cities.Get(c => c.Id == id);
             if (city == null)
                 return HttpNotFound("City with specified ID doesn't exist");
 
@@ -45,8 +45,8 @@ namespace WeatherApp.Controllers
         [HttpPost]
         public ActionResult Edit(City city)
         {
-            uow.Cities.Update(city);
-            uow.SaveChanges();
+            unitOfWork.Cities.Update(city);
+            unitOfWork.SaveChanges();
 
             return RedirectToAction("ShowWeather", "Weather");
         }
@@ -54,7 +54,7 @@ namespace WeatherApp.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            var city = uow.Cities.Get(id);
+            var city = unitOfWork.Cities.Get(c => c.Id == id);
             if (city == null)
                 return HttpNotFound();
 
@@ -64,10 +64,15 @@ namespace WeatherApp.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirm(int id)
         {
-            uow.Cities.Delete(id);
-            uow.SaveChanges();          
+            unitOfWork.Cities.Delete(id);
+            unitOfWork.SaveChanges();          
 
             return RedirectToAction("ShowWeather", "Weather");
+        }
+        protected override void Dispose(bool disposing)
+        {
+            unitOfWork.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

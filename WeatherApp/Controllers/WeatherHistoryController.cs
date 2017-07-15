@@ -10,21 +10,26 @@ namespace WeatherApp.Controllers
 {
     public class WeatherHistoryController : Controller
     {
-        IUnitOfWork uow;
+        private readonly IUnitOfWork unitOfWork;
         public WeatherHistoryController(IUnitOfWork uow)
         {
-            this.uow = uow;
+            unitOfWork = uow;
         }
 
         public ActionResult GetHistory()
         {
-            var smallList = uow.History.GetAll().Take(5);
+            var smallList = unitOfWork.History.GetAll().Take(5);
             return PartialView(smallList);
         }
         public ActionResult GetExtendedHistory()
         {
-            var fullHistory = uow.History.GetAll();
+            var fullHistory = unitOfWork.History.GetAll();
             return View(fullHistory);
+        }
+        protected override void Dispose(bool disposing)
+        {
+            unitOfWork.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

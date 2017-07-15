@@ -24,14 +24,14 @@ namespace WeatherApp.Domain.Concrete
                 context.Cities.Remove(city);
         }
 
-        public City Get(int id)
+        public City Get(Func<City, bool> predicate)
         {
-            return context.Cities.FirstOrDefault(c => c.Id == id);
+            return context.Cities.FirstOrDefault(predicate);
         }
 
         public IEnumerable<City> GetAll()
         {
-            return context.Cities.OrderBy(c => c.Name).ToList();
+            return context.Cities.ToList();
         }
 
         public void Insert(City item)

@@ -12,6 +12,6 @@ namespace WeatherApp.Domain.Abstract
         void Insert(T item);
         void Update(T item);
         void Delete(int id);
-        T Get(int id);
+        T Get(Func<T, bool> predicate);
     }
 }
