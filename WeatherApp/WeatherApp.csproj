@@ -140,6 +140,8 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Api\CityController.cs" />
     <Compile Include="Controllers\CityController.cs" />
     <Compile Include="Controllers\WeatherController.cs" />
     <Compile Include="Controllers\WeatherHistoryController.cs" />

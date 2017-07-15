@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using WeatherApp.OwmService;
 
 namespace WeatherApp.Domain.Entities
@@ -6,10 +7,11 @@ namespace WeatherApp.Domain.Entities
     public class City
     {
         public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
 
 
-
+        
         [NotMapped]
         public Coordinate Coord { get; set; }
         [NotMapped]
