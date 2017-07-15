@@ -21,13 +21,7 @@ namespace WeatherApp.Controllers
             try
             {
                 var result = weatherService.GetWeatherInfo(city, qtyDays);
-                var record = new HistoryRecord
-                {
-                    City = result.City.Name,
-                    DateTime = DateTime.Now,
-                    DayData = result.List[0],
-                };
-
+                var record = new HistoryRecord(result);
                 unitOfWork.History.Insert(record);
                 unitOfWork.SaveChanges();
 
@@ -45,6 +39,7 @@ namespace WeatherApp.Controllers
         protected override void Dispose(bool disposing)
         {
             unitOfWork.Dispose();
+            weatherService.Dispose();
             base.Dispose(disposing);
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 using WeatherApp.Domain.Entities;
 using WeatherApp.OwmService;
 
@@ -16,7 +17,7 @@ namespace WeatherApp.Domain.OwmService
         public int Clouds { get; set; }
         public virtual Temperature Temp { get; set; }
 
-
+        [IgnoreDataMember]
         public virtual HistoryRecord HistoryRecord { get; set; }
 
         [NotMapped]

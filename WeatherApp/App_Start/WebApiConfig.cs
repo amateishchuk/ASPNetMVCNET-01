@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using Newtonsoft.Json;
+using System.Web.Http;
 using System.Web.Http.Routing.Constraints;
 
 public static class WebApiConfig
@@ -14,15 +15,9 @@ public static class WebApiConfig
             name: "WeatherRoute",
             routeTemplate: "api/Weather/{city}/{qtyDays}",
             defaults: new { controller = "Weather" },
-            constraints: new { city = new AlphaRouteConstraint(), qtyDays = new RangeRouteConstraint(1, 16) }
+            constraints: new { city = new RegexRouteConstraint(@"[A-z]"), qtyDays = new RangeRouteConstraint(1, 16) }
         );
 
-        config.Routes.MapHttpRoute(
-            name: "DefaultApiId",
-            routeTemplate: "api/{controller}/{id}",
-            defaults: new { id = RouteParameter.Optional },
-            constraints: new { id = new IntRouteConstraint() }
-        );
 
         config.Routes.MapHttpRoute(
             name: "DefaultApiString",
@@ -31,6 +26,16 @@ public static class WebApiConfig
             constraints: new { name = new AlphaRouteConstraint() }
         );
 
+        config.Routes.MapHttpRoute(
+            name: "DefaultApiId",
+            routeTemplate: "api/{controller}/{id}",
+            defaults: new { id = RouteParameter.Optional },
+            constraints: new { id = new MinRouteConstraint(1) }
+        );
+
+
+        config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
         config.Formatters.Remove(config.Formatters.XmlFormatter);
+
     }
 }

@@ -17,6 +17,8 @@ namespace WeatherApp.Domain.Concrete
             this.apiKey = apiKey;
             this.apiUri = apiUri;
         }
+        
+
         public WeatherOwm GetWeatherInfo(string city, int qtyDays)
         {
             if (String.IsNullOrEmpty(city) || string.IsNullOrWhiteSpace(city))
@@ -40,6 +42,11 @@ namespace WeatherApp.Domain.Concrete
                 .Replace("{apiKey}", apiKey);
 
             return generatedLink;
+        }        
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
         }
     }
 }

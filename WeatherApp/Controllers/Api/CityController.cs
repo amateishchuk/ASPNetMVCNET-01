@@ -19,13 +19,22 @@ namespace WeatherApp.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.OK, 
                 unitOfWork.Cities.GetAll());
         }
-        public HttpResponseMessage GetCityById(int id)
+        public HttpResponseMessage Get(int id)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, unitOfWork.Cities.Get(c => c.Id == id));
+            var city = unitOfWork.Cities.Get(c => c.Id == id);
+            if (city != null)
+                return Request.CreateResponse(HttpStatusCode.OK, city);
+            else
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+
         }
-        public HttpResponseMessage GetCityByName(string name)
+        public HttpResponseMessage Get(string name)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, unitOfWork.Cities.Get(c => c.Name == name));
+            var city = unitOfWork.Cities.Get(c => c.Name.ToLower() == name.ToLower());
+            if (city != null)
+                return Request.CreateResponse(HttpStatusCode.OK, city);
+            else
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
         public HttpResponseMessage PostCity(string name)
