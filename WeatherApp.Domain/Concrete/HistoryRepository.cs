@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using WeatherApp.Domain.Abstract;
@@ -16,11 +17,9 @@ namespace WeatherApp.Domain.Concrete
             this.context = context;
         }
 
-        public void Delete(int id)
+        public void Delete(HistoryRecord item)
         {
-            var history = context.WeatherHistories.FirstOrDefault(h => h.Id == id);
-            if (history != null)
-                context.WeatherHistories.Remove(history);
+            context.WeatherHistories.Remove(item);
         }
 
         public HistoryRecord Get(Func<HistoryRecord, bool> predicate)

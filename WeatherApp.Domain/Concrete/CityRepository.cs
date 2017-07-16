@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using WeatherApp.Domain.Abstract;
@@ -17,11 +18,9 @@ namespace WeatherApp.Domain.Concrete
             this.context = context;
         }
 
-        public void Delete(int id)
+        public void Delete(City city)
         {
-            var city = context.Cities.FirstOrDefault(c => c.Id == id);
-            if (city != null)
-                context.Cities.Remove(city);
+           context.Cities.Remove(city);
         }
 
         public City Get(Func<City, bool> predicate)

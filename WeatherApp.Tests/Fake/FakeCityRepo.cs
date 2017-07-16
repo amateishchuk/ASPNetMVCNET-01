@@ -9,11 +9,9 @@ namespace WeatherApp.Tests.Fake
     public class FakeCityRepo : IRepository<City>
     {
         List<City> cities = new List<City>();
-        public void Delete(int id)
+        public void Delete(City item)
         {
-            var city = cities.FirstOrDefault(c => c.Id == id);
-            if (city != null)
-                cities.Remove(city);
+            cities.Remove(item);
         }
 
         public City Get(Func<City, bool> predicate)

@@ -3,17 +3,6 @@ C:\Users\amate\Desktop\Academy Binary Studio\WeatherApp.Domain\bin\Release\Weath
 C:\Users\amate\Desktop\Academy Binary Studio\WeatherApp.Domain\obj\Release\WeatherApp.Domain.csprojResolveAssemblyReference.cache
 C:\Users\amate\Desktop\Academy Binary Studio\WeatherApp.Domain\obj\Release\WeatherApp.Domain.dll
 C:\Users\amate\Desktop\Academy Binary Studio\WeatherApp.Domain\obj\Release\WeatherApp.Domain.pdb
-C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\bin\Release\WeatherApp.Domain.dll
-C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\bin\Release\WeatherApp.Domain.pdb
-C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\bin\Release\Newtonsoft.Json.dll
-C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\bin\Release\Newtonsoft.Json.xml
-C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\obj\Release\WeatherApp.Domain.dll
-C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\obj\Release\WeatherApp.Domain.pdb
-C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\bin\Release\WeatherApp.Domain.dll.config
-C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\bin\Release\EntityFramework.dll
-C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\bin\Release\EntityFramework.SqlServer.dll
-C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\bin\Release\EntityFramework.xml
-C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\bin\Release\EntityFramework.SqlServer.xml
 C:\Users\User 7\Desktop\ASPNetMVCNET-01\WeatherApp.Domain\bin\Release\WeatherApp.Domain.dll.config
 C:\Users\User 7\Desktop\ASPNetMVCNET-01\WeatherApp.Domain\bin\Release\WeatherApp.Domain.dll
 C:\Users\User 7\Desktop\ASPNetMVCNET-01\WeatherApp.Domain\bin\Release\WeatherApp.Domain.pdb
@@ -26,4 +15,15 @@ C:\Users\User 7\Desktop\ASPNetMVCNET-01\WeatherApp.Domain\bin\Release\Newtonsoft
 C:\Users\User 7\Desktop\ASPNetMVCNET-01\WeatherApp.Domain\obj\Release\WeatherApp.Domain.csprojResolveAssemblyReference.cache
 C:\Users\User 7\Desktop\ASPNetMVCNET-01\WeatherApp.Domain\obj\Release\WeatherApp.Domain.dll
 C:\Users\User 7\Desktop\ASPNetMVCNET-01\WeatherApp.Domain\obj\Release\WeatherApp.Domain.pdb
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\bin\Release\WeatherApp.Domain.dll.config
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\bin\Release\WeatherApp.Domain.dll
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\bin\Release\WeatherApp.Domain.pdb
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\bin\Release\EntityFramework.dll
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\bin\Release\Newtonsoft.Json.dll
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\bin\Release\EntityFramework.xml
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\bin\Release\Newtonsoft.Json.xml
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\obj\Release\WeatherApp.Domain.dll
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\obj\Release\WeatherApp.Domain.pdb
 C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Domain\obj\Release\WeatherApp.Domain.csprojResolveAssemblyReference.cache

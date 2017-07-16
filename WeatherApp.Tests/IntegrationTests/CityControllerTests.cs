@@ -36,7 +36,7 @@ namespace WeatherApp.Tests.IntegrationTests
         public void TestTearDown()
         {
             foreach (var city in unitOfWork.Cities.GetAll())
-                unitOfWork.Cities.Delete(city.Id);
+                unitOfWork.Cities.Delete(city);
         }                    
         [TestCase("Vinnitsa")]
         public void IntegrationAddCity_When_CityDoesntExistInList_Then_CityCountUpOne(string cityName)

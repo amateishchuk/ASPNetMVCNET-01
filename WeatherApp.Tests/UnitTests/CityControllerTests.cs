@@ -37,7 +37,7 @@ namespace WeatherApp.Tests.UnitTests
         public void TestTearDown()
         {
             foreach (var city in fakeUnitOfWork.Cities.GetAll())
-                fakeUnitOfWork.Cities.Delete(city.Id);
+                fakeUnitOfWork.Cities.Delete(city);
         }
 
         [Test]

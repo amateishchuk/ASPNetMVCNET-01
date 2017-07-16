@@ -67,8 +67,12 @@ namespace WeatherApp.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirm(int id)
         {
-            unitOfWork.Cities.Delete(id);
-            unitOfWork.SaveChanges();          
+            var city = unitOfWork.Cities.Get(c => c.Id == id);
+            if (city != null)
+            {
+                unitOfWork.Cities.Delete(city);
+                unitOfWork.SaveChanges();
+            }
 
             return RedirectToAction("ShowWeather", "Weather");
         }

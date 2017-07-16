@@ -12,11 +12,9 @@ namespace WeatherApp.Tests.Fake
     {
         List<HistoryRecord> histories = new List<HistoryRecord>();
 
-        public void Delete(int id)
+        public void Delete(HistoryRecord history)
         {
-            var history = histories.FirstOrDefault(h=>h.Id == id);
-            if (history != null)
-                histories.Remove(history);
+            histories.Remove(history);
         }
 
         public HistoryRecord Get(Func<HistoryRecord, bool> predicate)
