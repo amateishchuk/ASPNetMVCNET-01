@@ -11,12 +11,9 @@ namespace WeatherApp.Domain.Entities
         public string Name { get; set; }
 
 
-        
-        [NotMapped]
-        public Coordinate Coord { get; set; }
-        [NotMapped]
-        public string Country { get; set; }
-        [NotMapped]
+                
+        public virtual Coordinate Coord { get; set; }        
+        public string Country { get; set; }        
         public int Population { get; set; }
     }
 }

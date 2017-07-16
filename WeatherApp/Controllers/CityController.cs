@@ -7,9 +7,11 @@ namespace WeatherApp.Controllers
     public class CityController : Controller
     {
         private readonly IUnitOfWork unitOfWork;
+        private readonly IWeatherService weatherService;
 
-        public CityController(IUnitOfWork unitOfWork)
+        public CityController(IUnitOfWork unitOfWork, IWeatherService weatherService)
         {
+            this.weatherService = weatherService;
             this.unitOfWork = unitOfWork;
         }
 
@@ -21,16 +23,17 @@ namespace WeatherApp.Controllers
 
         [HttpPost]
         public ActionResult Add(string city)
-        {            
-            city = city.Trim();
+        {
+            if (ModelState.IsValid)
+            {
+                var result = weatherService.GetWeather(city, 1);
+                var newCity = result.City;
+                newCity.Id = 0;
 
-            if (string.IsNullOrEmpty(city))
-                return HttpNotFound();
-
-            unitOfWork.Cities.Insert(new City { Name = city });
-            unitOfWork.SaveChanges();
-
-            return RedirectToAction("ShowWeather", "Weather");
+                unitOfWork.Cities.Insert(newCity);
+                unitOfWork.SaveChanges();
+            }
+            return RedirectToAction("ShowWeather", "Weather");            
         }
         [HttpGet]
         public ActionResult Edit(int id)
@@ -71,6 +74,7 @@ namespace WeatherApp.Controllers
         }
         protected override void Dispose(bool disposing)
         {
+            weatherService.Dispose();
             unitOfWork.Dispose();
             base.Dispose(disposing);
         }

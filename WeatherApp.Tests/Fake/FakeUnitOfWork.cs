@@ -34,6 +34,11 @@ namespace WeatherApp.Tests
             }
         }
 
+        public void Dispose()
+        {
+            
+        }
+
         public void SaveChanges()
         {
             //...

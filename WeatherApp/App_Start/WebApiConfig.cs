@@ -15,7 +15,7 @@ public static class WebApiConfig
             name: "WeatherRoute",
             routeTemplate: "api/Weather/{city}/{qtyDays}",
             defaults: new { controller = "Weather" },
-            constraints: new { city = new RegexRouteConstraint(@"[A-z]"), qtyDays = new RangeRouteConstraint(1, 16) }
+            constraints: new { city = new AlphaRouteConstraint(), qtyDays = new RangeRouteConstraint(1, 16) }
         );
 
 

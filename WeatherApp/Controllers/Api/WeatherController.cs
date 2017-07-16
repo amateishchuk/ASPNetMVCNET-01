@@ -18,7 +18,7 @@ namespace WeatherApp.Controllers.Api
 
         public HttpResponseMessage GetWeather(string city, int qtyDays)
         {
-            var result = weatherService.GetWeatherInfo(city, qtyDays);
+            var result = weatherService.GetWeather(city, qtyDays);
             unitOfWork.History.Insert(new Domain.Entities.HistoryRecord(result));
             unitOfWork.SaveChanges();
             return Request.CreateResponse(HttpStatusCode.OK, result);

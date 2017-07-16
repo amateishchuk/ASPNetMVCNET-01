@@ -19,7 +19,7 @@ namespace WeatherApp.Domain.Concrete
         }
         
 
-        public WeatherOwm GetWeatherInfo(string city, int qtyDays)
+        public WeatherOwm GetWeather(string city, int qtyDays)
         {
             if (String.IsNullOrEmpty(city) || string.IsNullOrWhiteSpace(city))
                 throw new ArgumentNullException();

@@ -30,7 +30,11 @@ namespace WeatherApp.Domain.Concrete
                 .WithRequiredPrincipal(d => d.HistoryRecord)
                 .WillCascadeOnDelete(true);
 
-                
+            modelBuilder.Entity<City>()
+                .HasRequired(c => c.Coord)
+                .WithRequiredPrincipal(crd => crd.City)
+                .WillCascadeOnDelete(true);
+
 
             base.OnModelCreating(modelBuilder);
         }

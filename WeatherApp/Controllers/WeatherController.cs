@@ -20,7 +20,7 @@ namespace WeatherApp.Controllers
         {
             try
             {
-                var result = weatherService.GetWeatherInfo(city, qtyDays);
+                var result = weatherService.GetWeather(city, qtyDays);
                 var record = new HistoryRecord(result);
                 unitOfWork.History.Insert(record);
                 unitOfWork.SaveChanges();

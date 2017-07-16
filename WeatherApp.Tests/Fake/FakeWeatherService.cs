@@ -13,13 +13,18 @@ namespace WeatherApp.Tests.Fake
 {
     public class FakeWeatherService : IWeatherService
     {
-        public WeatherOwm GetWeatherInfo(string city, int qtyDays)
+        public void Dispose()
+        {
+            
+        }
+
+        public WeatherOwm GetWeather(string city, int qtyDays)
         {
             if (city == null || string.IsNullOrWhiteSpace(city) || string.IsNullOrEmpty(city))
                 throw new ArgumentNullException();
 
             else if (qtyDays < 1 || qtyDays > 15)
-                throw new ArgumentOutOfRangeException();            
+                throw new ArgumentOutOfRangeException();
             else
             {
                 return new WeatherOwm

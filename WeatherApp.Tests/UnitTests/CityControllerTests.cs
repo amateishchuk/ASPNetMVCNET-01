@@ -16,10 +16,12 @@ namespace WeatherApp.Tests.UnitTests
     public class CityControllerTests
     {
         private FakeUnitOfWork fakeUnitOfWork;
+        private FakeWeatherService fakeWeatherService;
 
         public CityControllerTests()
         {
             fakeUnitOfWork = new FakeUnitOfWork();
+            fakeWeatherService = new FakeWeatherService();
         }
 
         [SetUp]
@@ -41,7 +43,7 @@ namespace WeatherApp.Tests.UnitTests
         [Test]
         public void UnitGetFavourites_When_CollectionHas2Records_Then_ModelMustContains2Records()
         {
-            CityController controller = new CityController(fakeUnitOfWork);
+            CityController controller = new CityController(fakeUnitOfWork, fakeWeatherService);
 
             //var result = controller.GetFavorites() as ViewResult;
 
@@ -61,7 +63,7 @@ namespace WeatherApp.Tests.UnitTests
         public void UnitAddCity_When_CityExistsInList_Then_CityCountLeftConstant(string cityName)
         {
             // Arrange
-            CityController cityController = new CityController(fakeUnitOfWork);
+            CityController cityController = new CityController(fakeUnitOfWork, fakeWeatherService);
 
             // Act
             cityController.Add(cityName);
@@ -74,7 +76,7 @@ namespace WeatherApp.Tests.UnitTests
         public void UnitAddCity_When_CityDoesntExistInList_Then_CityCountUpOne(string cityName)
         {
             // Arrange
-            CityController cityController = new CityController(fakeUnitOfWork);
+            CityController cityController = new CityController(fakeUnitOfWork, fakeWeatherService);
 
             // Act
             cityController.Add(cityName);
@@ -87,7 +89,7 @@ namespace WeatherApp.Tests.UnitTests
         public void UnitEditCity_When_CityWithIncorrectId_Then_ReturnErrorPage(int id)
         {
             // Arrange
-            CityController cityController = new CityController(fakeUnitOfWork);
+            CityController cityController = new CityController(fakeUnitOfWork, fakeWeatherService);
 
             // Act
             var result = cityController.Edit(id);
@@ -102,7 +104,7 @@ namespace WeatherApp.Tests.UnitTests
         public void UnitDeleteCity_When_CityWithIncorrectId_Then_ReturnErrorPage(int id)
         {
             // Arrange
-            CityController cityController = new CityController(fakeUnitOfWork);
+            CityController cityController = new CityController(fakeUnitOfWork, fakeWeatherService);
 
             // Act
             var result = cityController.Delete(id);
@@ -115,7 +117,7 @@ namespace WeatherApp.Tests.UnitTests
         public void UnitDeleteCity_When_CityWithCorrectId_CityCountDownOne(int id)
         {
             // Arrange
-            CityController cityController = new CityController(fakeUnitOfWork);
+            CityController cityController = new CityController(fakeUnitOfWork, fakeWeatherService);
 
             // Act
             var result = cityController.DeleteConfirm(id);

@@ -19,9 +19,9 @@ namespace WeatherApp.Tests.Fake
                 histories.Remove(history);
         }
 
-        public HistoryRecord Get(int id)
+        public HistoryRecord Get(Func<HistoryRecord, bool> predicate)
         {
-            return histories.FirstOrDefault(h => h.Id == id);
+            return histories.FirstOrDefault(predicate);
         }
 
         public IEnumerable<HistoryRecord> GetAll()

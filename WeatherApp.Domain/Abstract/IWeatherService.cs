@@ -5,6 +5,6 @@ namespace WeatherApp.Domain.Abstract
 {
     public interface IWeatherService : IDisposable
     {
-        WeatherOwm GetWeatherInfo(string city, int qtyDays);
+        WeatherOwm GetWeather(string city, int qtyDays);
     }
 }

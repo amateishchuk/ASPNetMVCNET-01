@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WeatherApp.Domain.Abstract;
 using WeatherApp.Domain.Entities;
 
@@ -18,9 +16,9 @@ namespace WeatherApp.Tests.Fake
                 cities.Remove(city);
         }
 
-        public City Get(int id)
+        public City Get(Func<City, bool> predicate)
         {
-            return cities.FirstOrDefault(c => c.Id == id);
+            return cities.FirstOrDefault(predicate);
         }
 
         public IEnumerable<City> GetAll()

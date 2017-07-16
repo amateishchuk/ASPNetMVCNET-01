@@ -9,9 +9,11 @@ namespace WeatherApp.Controllers.Api
     public class CityController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;
+        private readonly IWeatherService weatherService;
 
-        public CityController(IUnitOfWork unitOfWork)
+        public CityController(IUnitOfWork unitOfWork, IWeatherService weatherService)
         {
+            this.weatherService = weatherService;
             this.unitOfWork = unitOfWork;
         }
         public HttpResponseMessage GetCities()
@@ -41,7 +43,11 @@ namespace WeatherApp.Controllers.Api
         {
             if (ModelState.IsValid)
             {
-                unitOfWork.Cities.Insert(new Domain.Entities.City { Name = name });
+                var result = weatherService.GetWeather(name, 1);
+                var city = result.City;
+                city.Id = 0;
+
+                unitOfWork.Cities.Insert(city);
                 unitOfWork.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.Created);
             }
@@ -64,6 +70,7 @@ namespace WeatherApp.Controllers.Api
         }
         protected override void Dispose(bool disposing)
         {
+            weatherService.Dispose();
             unitOfWork.Dispose();
             base.Dispose(disposing);
         }

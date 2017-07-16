@@ -37,3 +37,9 @@ C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Tests\obj\Release\Wea
 C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Tests\obj\Release\WeatherApp.Tests.pdb
 C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Tests\bin\Release\EntityFramework.SqlServer.dll
 C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Tests\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Tests\bin\Release\System.Web.Http.dll
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Tests\bin\Release\System.Net.Http.Formatting.dll
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Tests\bin\Release\System.Web.Http.WebHost.dll
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Tests\bin\Release\System.Web.Http.xml
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Tests\bin\Release\System.Net.Http.Formatting.xml
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Tests\bin\Release\System.Web.Http.WebHost.xml
