@@ -33,7 +33,7 @@ namespace WeatherApp.Tests.UnitTests
         [TestCase("Kharkiv", 19)]
         public void UnitShowWeather_When_ParametersNotValid_Then_HttpNotFoundResult(string city, int qty)
         {
-            WeatherController controller = new WeatherController(weatherService, unitOfWork);
+            Controllers.WeatherController controller = new Controllers.WeatherController(weatherService, unitOfWork);
 
             var result = controller.ShowWeather(city, qty);
 
@@ -43,7 +43,7 @@ namespace WeatherApp.Tests.UnitTests
         [TestCase("Kiev", 10)]
         public void UnitShowWeather_When_ParametersValid_Then_ReturnWeatherOWN(string city, int qty)
         {
-            WeatherController controller = new WeatherController(weatherService, unitOfWork);
+            Controllers.WeatherController controller = new Controllers.WeatherController(weatherService, unitOfWork);
 
             var result = controller.ShowWeather(city, qty);
 

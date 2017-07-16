@@ -1,12 +1,8 @@
 ﻿using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 using WeatherApp.Controllers;
-using WeatherApp.Domain.Abstract;
 using WeatherApp.Domain.Entities;
 using WeatherApp.Tests.Fake;
 

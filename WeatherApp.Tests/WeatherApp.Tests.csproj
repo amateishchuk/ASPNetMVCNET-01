@@ -87,7 +87,8 @@
     <Compile Include="IntegrationTests\CityControllerTests.cs" />
     <Compile Include="IntegrationTests\WeatherControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTests\Api\CityControllerTests.cs" />
+    <Compile Include="UnitTests\Api\UnitCityControllerApiTests.cs" />
+    <Compile Include="UnitTests\Api\UnitWeatherControllerApiTests.cs" />
     <Compile Include="UnitTests\CityControllerTests.cs" />
     <Compile Include="UnitTests\WeatherControllerTests.cs" />
   </ItemGroup>

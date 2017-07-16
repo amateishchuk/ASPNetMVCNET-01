@@ -55,6 +55,17 @@ namespace WeatherApp.Controllers.Api
             else
                 return BadRequest();
         }
+        public IHttpActionResult Put(int id, City city)
+        {
+            if (ModelState.IsValid && city.Id == id && unitOfWork.Cities.Get(c => c.Id == id) != null)
+            {                
+                unitOfWork.Cities.Update(city);
+                unitOfWork.SaveChanges();
+                return Ok();
+            }
+            else
+                return BadRequest();
+        }
         public IHttpActionResult Delete(int id)
         {
             var city = unitOfWork.Cities.Get(c => c.Id == id);

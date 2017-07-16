@@ -16,12 +16,13 @@ namespace WeatherApp.Controllers.Api
             this.weatherService = weatherService;
         }
 
-        public HttpResponseMessage GetWeather(string city, int qtyDays)
+        public IHttpActionResult GetWeather(string city, int qtyDays)
         {
             var result = weatherService.GetWeather(city, qtyDays);
             unitOfWork.History.Insert(new Domain.Entities.HistoryRecord(result));
             unitOfWork.SaveChanges();
-            return Request.CreateResponse(HttpStatusCode.OK, result);
+            return Ok(result);
+            
         }
 
 
