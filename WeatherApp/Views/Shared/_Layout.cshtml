@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="~/Content/Sunny.png" type="image/png">
 </head>
 <body>
-    <h1><img src="~/Content/Sunny.png" title="Sun" />@Html.ActionLink("WeatherOWM", "GetWeather", "Weather")</h1>
+    <h1><img src="~/Content/Sunny.png" title="Sun" />@Html.RouteLink("WeatherOWM", "Empty")</h1>
     <div class="w3-container w3-content w3-margin-bottom">
         @RenderBody()
     </div>

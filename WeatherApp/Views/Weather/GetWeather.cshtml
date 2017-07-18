@@ -21,9 +21,9 @@
 <div class="w3-col l9">
     <p>
         <span class="days-selector">
-            @Html.RouteLink("1 day", "CityAndQtyDays", new { city = Model.City.Name, qtyDays = 1 }, new { @class = Model.Cnt == 1 ? "underline" : "" }) |
-            @Html.RouteLink("3 days", "CityAndQtyDays", new { city = Model.City.Name, qtyDays = 3 }, new { @class = Model.Cnt == 3 ? "underline" : "" }) |
-            @Html.RouteLink("7 days", "CityAndQtyDays", new { city = Model.City.Name, qtyDays = 7 }, new { @class = Model.Cnt == 7 ? "underline" : "" })
+            @Html.RouteLink("1 day", "FullWeather", new { city = Model.City.Name, qtyDays = 1 }, new { @class = Model.Cnt == 1 ? "underline" : "" }) |
+            @Html.RouteLink("3 days", "FullWeather", new { city = Model.City.Name, qtyDays = 3 }, new { @class = Model.Cnt == 3 ? "underline" : "" }) |
+            @Html.RouteLink("7 days", "FullWeather", new { city = Model.City.Name, qtyDays = 7 }, new { @class = Model.Cnt == 7 ? "underline" : "" })
         </span>
     </p>
     <table class="w3-table w3-bordered w3-centered">

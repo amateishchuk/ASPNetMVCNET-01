@@ -26,7 +26,7 @@ namespace WeatherApp.Domain.Entities
             if (name != null)
             {
                 string city = name.Trim();
-                if (!string.IsNullOrEmpty(city) && name.All(n => Char.IsLetter(n) || n == ' '))
+                if (!string.IsNullOrEmpty(city) && Regex.IsMatch(city, @"^[a-zA-Z ]+$"))
                     return true;
             }
             return false;
