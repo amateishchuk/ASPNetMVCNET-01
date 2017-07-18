@@ -43,3 +43,5 @@ C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Tests\bin\Release\Sys
 C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Tests\obj\Release\WeatherApp.Tests.csprojResolveAssemblyReference.cache
 C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Tests\obj\Release\WeatherApp.Tests.dll
 C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Tests\obj\Release\WeatherApp.Tests.pdb
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Tests\bin\Release\AutoMapper.dll
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp.Tests\bin\Release\AutoMapper.xml

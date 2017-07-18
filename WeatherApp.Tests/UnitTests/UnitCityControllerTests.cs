@@ -15,7 +15,6 @@ namespace WeatherApp.Tests.UnitTests
     {
         private readonly Mock<IRepository<City>> mockCityRepo;
         private readonly Mock<IUnitOfWork> mockUnitOfWork;
-        private readonly Mock<IWeatherService> mockWeatherService;
         private readonly CityController controller;
         private List<City> cities;
 
@@ -24,8 +23,7 @@ namespace WeatherApp.Tests.UnitTests
             cities = new List<City>();
             mockCityRepo = new Mock<IRepository<City>>();
             mockUnitOfWork = new Mock<IUnitOfWork>();
-            mockWeatherService = new Mock<IWeatherService>();
-            controller = new CityController(mockUnitOfWork.Object, mockWeatherService.Object);
+            controller = new CityController(mockUnitOfWork.Object);
         }
 
         [SetUp]
@@ -59,17 +57,7 @@ namespace WeatherApp.Tests.UnitTests
                 .Returns((Func<City, bool> predicate) => mockCityRepo.Object.Get(predicate));
             mockUnitOfWork.Setup(u => u.Cities.Insert(It.IsAny<City>())).Callback((City c) => mockCityRepo.Object.Insert(c));
             mockUnitOfWork.Setup(u => u.Cities.Delete(It.IsAny<City>())).Callback((City city) => mockCityRepo.Object.Delete(city));
-            mockUnitOfWork.Setup(u => u.Cities.Update(It.IsAny<City>())).Callback((City c) => mockCityRepo.Object.Update(c));
-
-
-            mockWeatherService.Setup(w => w.GetWeather(It.IsRegex("[A-z]"), It.IsInRange<int>(1, 16, Range.Inclusive)))
-                .Returns(new OwmService.WeatherOwm());
-            mockWeatherService.Setup(w => w.GetWeather(It.Is<string>(c => c == null), It.IsInRange<int>(1, 16, Range.Inclusive)))
-                .Throws<ArgumentNullException>();
-            mockWeatherService.Setup(w => w.GetWeather(It.Is<string>(c => string.IsNullOrEmpty(c) || string.IsNullOrWhiteSpace(c)), It.IsInRange<int>(1, 16, Range.Inclusive)))
-                .Throws<ArgumentException>();
-            mockWeatherService.Setup(w => w.GetWeather(It.IsRegex("[A-z]"), It.Is<int>(qty => qty < 1 || qty > 16)))
-                .Throws<ArgumentOutOfRangeException>();
+            mockUnitOfWork.Setup(u => u.Cities.Update(It.IsAny<City>())).Callback((City c) => mockCityRepo.Object.Update(c));            
         }
 
 
@@ -90,9 +78,7 @@ namespace WeatherApp.Tests.UnitTests
         [Test]
         [TestCase("ExistCity")]
         public void UnitAddCity_When_CityExistsInList_Then_CityCountLeftConstant(string name)
-        {
-            mockWeatherService.Setup(w => w.GetWeather(It.IsRegex("[A-z]"), It.IsInRange<int>(1, 16, Range.Inclusive)))
-                .Returns(new OwmService.WeatherOwm { City = new City { Name = name } });
+        {            
             var city = new City { Id = 1, Name = name };
             cities.Add(city);
             
@@ -108,13 +94,11 @@ namespace WeatherApp.Tests.UnitTests
         [Test]
         public void UnitAddCity_When_CityDoesntExistInList_Then_CityCountUpOne()
         {
-            string cityName1 = "City1";
-            string cityName2 = "City2";
+            string cityName1 = "CityFirst";
+            string cityName2 = "CitySecond";
             var city = new City { Id = 1, Name = cityName1 };
             var city2 = new City { Id = 2, Name = cityName2 };
-
-            mockWeatherService.Setup(w => w.GetWeather(It.IsRegex("[A-z]"), It.IsInRange<int>(1, 16, Range.Inclusive)))
-                .Returns(new OwmService.WeatherOwm { City = new City { Name = city2.Name } });
+            
             cities.Add(city);
 
             controller.Add(cityName2);

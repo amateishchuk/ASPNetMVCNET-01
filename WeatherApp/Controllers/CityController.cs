@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Net.Http;
 using System.Web.Mvc;
 using WeatherApp.Domain.Abstract;
@@ -9,11 +11,9 @@ namespace WeatherApp.Controllers
     public class CityController : Controller
     {
         private readonly IUnitOfWork unitOfWork;
-        private readonly IWeatherService weatherService;
 
-        public CityController(IUnitOfWork unitOfWork, IWeatherService weatherService)
+        public CityController(IUnitOfWork unitOfWork)
         {
-            this.weatherService = weatherService;
             this.unitOfWork = unitOfWork;
         }
 
@@ -26,32 +26,14 @@ namespace WeatherApp.Controllers
         [HttpPost]
         public ActionResult Add(string city)
         {
-            try
+            if (City.IsValidName(city))
             {
-                var result = weatherService.GetWeather(city, 1);
-                var newCity = result.City;
-                newCity.Id = 0;
-
-                unitOfWork.Cities.Insert(newCity);
+                unitOfWork.Cities.Insert(new City { Name = city });
                 unitOfWork.SaveChanges();
                 return RedirectToAction("ShowWeather", "Weather");
             }
-            catch (ArgumentNullException)
-            {
-                return HttpNotFound("City can't be whitespaces or empty");
-            }
-            catch (ArgumentException)
-            {
-                return HttpNotFound("City can't be nul");
-            }
-            catch (AggregateException)
-            {
-                return HttpNotFound("Bad city name");
-            }
-            catch (HttpRequestException)
-            {
-                return HttpNotFound("Bad city name");
-            }
+            else
+                return HttpNotFound("Bad city name");       
         }
         [HttpGet]
         public ActionResult Edit(int id)
@@ -101,7 +83,6 @@ namespace WeatherApp.Controllers
         }
         protected override void Dispose(bool disposing)
         {
-            weatherService.Dispose();
             unitOfWork.Dispose();
             base.Dispose(disposing);
         }

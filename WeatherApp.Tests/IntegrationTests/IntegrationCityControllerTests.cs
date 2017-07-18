@@ -14,16 +14,12 @@ namespace WeatherApp.Tests.IntegrationTests
     public class CityControllerTests
     {
         private readonly IUnitOfWork unitOfWork;
-        private readonly IWeatherService weatherService;
         private readonly CityController controller;
 
         public CityControllerTests()
         {
-            string apiKey = ConfigurationManager.AppSettings["ApiKeyOwm"];
-            string apiUri = ConfigurationManager.AppSettings["ApiUriOwm"];
             unitOfWork = new UnitOfWork("TestDb");
-            weatherService = new WeatherServiceOwm(apiKey, apiUri);
-            controller = new CityController(unitOfWork, weatherService);
+            controller = new CityController(unitOfWork);
         }
         [Test]
         public void IntegrationGetFavourites_When_ListContainsOne_Then_ReturnCountOne()
@@ -48,11 +44,12 @@ namespace WeatherApp.Tests.IntegrationTests
             var city = new City { Name = name };
             unitOfWork.Cities.Insert(city);
             unitOfWork.SaveChanges();
+            var foundCity = unitOfWork.Cities.Get(c => c.Name == city.Name);
 
             controller.Add(city.Name);
 
             var count = unitOfWork.Cities.GetAll().Where(c => c.Name == city.Name).Count();
-            unitOfWork.Cities.Delete(city);
+            unitOfWork.Cities.Delete(foundCity);
             unitOfWork.SaveChanges();
 
 
@@ -82,6 +79,7 @@ namespace WeatherApp.Tests.IntegrationTests
         [TestCase(null)]
         [TestCase(" ")]
         [TestCase("")]
+        [TestCase("Kukushka112")]
         public void IntegrationAddCity_When_CityNameIncorrect_Then_ReturnNotFoundResult(string city)
         {
             var result = controller.Add(city) as HttpNotFoundResult;

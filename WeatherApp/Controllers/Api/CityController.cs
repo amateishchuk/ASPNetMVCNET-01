@@ -1,71 +1,59 @@
-﻿using System;
-using System.Net.Http;
+﻿using AutoMapper;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Web.Http;
 using WeatherApp.Domain.Abstract;
 using WeatherApp.Domain.Entities;
+using WeatherApp.Models;
 
 namespace WeatherApp.Controllers.Api
 {
     public class CityController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;
-        private readonly IWeatherService weatherService;
 
-        public CityController(IUnitOfWork unitOfWork, IWeatherService weatherService)
+        public CityController(IUnitOfWork unitOfWork)
         {
-            this.weatherService = weatherService;
             this.unitOfWork = unitOfWork;
+            Mapper.Initialize(cfg => cfg.CreateMap<City, CityViewModel>());
         }
         public IHttpActionResult GetCities()
         {
-            return Ok(unitOfWork.Cities.GetAll());
+            var result = Mapper.Map<IEnumerable<City>, IEnumerable<CityViewModel>>(unitOfWork.Cities.GetAll());
+            return Ok(result);
         }
         public IHttpActionResult Get(int id)
         {
             var city = unitOfWork.Cities.Get(c => c.Id == id);
             if (city != null)
-                return Ok(city);
+            {
+                var result = Mapper.Map<City, CityViewModel>(city);
+                return Ok(result);
+            }
             else
                 return BadRequest();
-
         }
         public IHttpActionResult Get(string name)
         {
             var city = unitOfWork.Cities.Get(c => c.Name.ToLower() == name.ToLower());
             if (city != null)
-                return Ok(city);
+            {
+                var result = Mapper.Map<City, CityViewModel>(city);
+                return Ok(result);
+            }
             else
                 return BadRequest();
         }
-
         public IHttpActionResult Post(string name)
-        {           
-            try
+        {
+            if (City.IsValidName(name))
             {
-                var result = weatherService.GetWeather(name, 1);
-                var city = result.City;
-                city.Id = 0;
-
-                unitOfWork.Cities.Insert(city);
+                unitOfWork.Cities.Insert(new City { Name = name });
                 unitOfWork.SaveChanges();
                 return Ok();
             }
-            catch (ArgumentNullException)
-            {
-                return BadRequest("City can't be whitespaces or empty");
-            }
-            catch (ArgumentException)
-            {
-                return BadRequest("City can't be nul");
-            }
-            catch (AggregateException)
-            {
+            else
                 return BadRequest("Bad city name");
-            }
-            catch (HttpRequestException)
-            {
-                return BadRequest("Bad city name");
-            }            
         }
         public IHttpActionResult Put(int id, City city)
         {
@@ -94,7 +82,6 @@ namespace WeatherApp.Controllers.Api
         }
         protected override void Dispose(bool disposing)
         {
-            weatherService.Dispose();
             unitOfWork.Dispose();
             base.Dispose(disposing);
         }

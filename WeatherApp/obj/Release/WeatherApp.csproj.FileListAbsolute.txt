@@ -101,3 +101,5 @@ C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp\bin\System.Web.Mvc.xm
 C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp\obj\Release\WeatherApp.csprojResolveAssemblyReference.cache
 C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp\obj\Release\WeatherApp.dll
 C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp\obj\Release\WeatherApp.pdb
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp\bin\AutoMapper.dll
+C:\Users\amate\Desktop\Academy Binary Studio\01\WeatherApp\bin\AutoMapper.xml

@@ -7,6 +7,7 @@ using System.Web.Http.Results;
 using WeatherApp.Controllers.Api;
 using WeatherApp.Domain.Abstract;
 using WeatherApp.Domain.Entities;
+using WeatherApp.Models;
 
 namespace WeatherApp.Tests.UnitTests.Api
 {
@@ -15,7 +16,6 @@ namespace WeatherApp.Tests.UnitTests.Api
     {
         private readonly Mock<IRepository<City>> mockCityRepo;
         private readonly Mock<IUnitOfWork> mockUnitOfWork;
-        private readonly Mock<IWeatherService> mockWeatherService;
         private readonly CityController controller;
         private List<City> cities;
 
@@ -23,8 +23,7 @@ namespace WeatherApp.Tests.UnitTests.Api
         {
             mockCityRepo = new Mock<IRepository<City>>();
             mockUnitOfWork = new Mock<IUnitOfWork>();
-            mockWeatherService = new Mock<IWeatherService>();
-            controller = new CityController(mockUnitOfWork.Object, mockWeatherService.Object);
+            controller = new CityController(mockUnitOfWork.Object);
         }
 
         [SetUp]
@@ -58,10 +57,6 @@ namespace WeatherApp.Tests.UnitTests.Api
             mockUnitOfWork.Setup(u => u.Cities.Insert(It.IsAny<City>())).Callback((City c) => mockCityRepo.Object.Insert(c));
             mockUnitOfWork.Setup(u => u.Cities.Delete(It.IsAny<City>())).Callback((City city) => mockCityRepo.Object.Delete(city));
             mockUnitOfWork.Setup(u => u.Cities.Update(It.IsAny<City>())).Callback((City c) => mockCityRepo.Object.Update(c));
-
-
-            mockWeatherService.Setup(w => w.GetWeather(It.IsRegex("[A-z]"), It.IsInRange<int>(1, 16, Range.Inclusive)))
-                .Returns(new OwmService.WeatherOwm());
         }
 
         [Test]
@@ -69,7 +64,7 @@ namespace WeatherApp.Tests.UnitTests.Api
         {
             cities = new List<City> { new City { Id = 1, Name = "Name1" } };            
             
-            var result = controller.GetCities() as OkNegotiatedContentResult<IEnumerable<City>>;
+            var result = controller.GetCities() as OkNegotiatedContentResult<IEnumerable<CityViewModel>>;
 
             Assert.That(result.Content.ToList().Count == 1);           
         }
@@ -80,7 +75,7 @@ namespace WeatherApp.Tests.UnitTests.Api
         {
             cities = new List<City> { new City { Id = 1, Name = "Name1" } };        
                         
-            var result = controller.Get(id) as OkNegotiatedContentResult<City>;
+            var result = controller.Get(id) as OkNegotiatedContentResult<CityViewModel>;
 
             Assert.That(result.Content.Id == id);
         }
@@ -91,7 +86,7 @@ namespace WeatherApp.Tests.UnitTests.Api
         {
             cities = new List<City> { new City { Id = 1, Name = "Name1" } };            
 
-            var result = controller.Get(name) as OkNegotiatedContentResult<City>;
+            var result = controller.Get(name) as OkNegotiatedContentResult<CityViewModel>;
 
             Assert.That(result.Content.Name == name);
         }
@@ -119,12 +114,10 @@ namespace WeatherApp.Tests.UnitTests.Api
         }
 
         [Test]
-        [TestCase("Name10")]
+        [TestCase("NameNotContained")]
         public void UnitApiPostCity_WhenCityNameNotContainedInList_Then_AddToList(string name)
         {
-            cities = new List<City> { new City { Id = 1, Name = "Name1" } };
-            mockWeatherService.Setup(w => w.GetWeather(It.IsRegex("[A-z]"), It.IsInRange<int>(1, 16, Range.Inclusive)))
-                .Returns(new OwmService.WeatherOwm { City = new City { Name = name } });            
+            cities = new List<City> { new City { Id = 1, Name = "AnyName" } };         
 
             var result = controller.Post(name) as OkResult;
 
@@ -134,12 +127,10 @@ namespace WeatherApp.Tests.UnitTests.Api
         }
 
         [Test]
-        [TestCase("Name1")]
+        [TestCase("NameContained")]
         public void UnitApiPostCity_WhenCityNameContainedInList_Then_DontAddToList(string name)
         {
-            cities = new List<City> { new City { Id = 1, Name = "Name1" } };
-            mockWeatherService.Setup(w => w.GetWeather(It.IsRegex("[A-z]"), It.IsInRange<int>(1, 16, Range.Inclusive)))
-                .Returns(new OwmService.WeatherOwm { City = new City { Name = name } });            
+            cities = new List<City> { new City { Id = 1, Name = name } };          
 
             var result = controller.Post(name) as OkResult;
 

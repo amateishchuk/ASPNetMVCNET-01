@@ -10,6 +10,7 @@ using WeatherApp.Domain.Abstract;
 using WeatherApp.Domain.Concrete;
 using WeatherApp.Controllers.Api;
 using WeatherApp.Domain.Entities;
+using WeatherApp.Models;
 
 namespace WeatherApp.Tests.IntegrationTests.Api
 {
@@ -17,32 +18,26 @@ namespace WeatherApp.Tests.IntegrationTests.Api
     public class IntegrationCityControllerApiTests
     {
         private readonly IUnitOfWork unitOfwork;
-        private readonly IWeatherService weatherService;
         private readonly CityController controller;
 
         public IntegrationCityControllerApiTests()
         {
-            string apiKey = ConfigurationManager.AppSettings["ApiKeyOwm"];
-            string apiUri = ConfigurationManager.AppSettings["ApiUriOwm"];
-
             unitOfwork = new UnitOfWork("TestDb");
-            weatherService = new WeatherServiceOwm(apiKey, apiUri);
-            controller = new CityController(unitOfwork, weatherService);
+            controller = new CityController(unitOfwork);
         }
 
         [Test]
         public void IntegrationApiGetCities_When_CityListContain1Cities_Then_Return1Records()
         {
-            string name1 = "GetCities1";          
-           
-
+            string name1 = "GetCities1";                     
             unitOfwork.Cities.Insert(new City { Name = name1 });
             unitOfwork.SaveChanges();
-            var result = controller.GetCities() as OkNegotiatedContentResult<IEnumerable<City>>;
-            var resultCity1 = result.Content.FirstOrDefault(c => c.Name == name1);
-            unitOfwork.Cities.Delete(resultCity1);
-            unitOfwork.SaveChanges();
 
+            var result = controller.GetCities() as OkNegotiatedContentResult<IEnumerable<CityViewModel>>;
+            var resultCity1 = result.Content.ToList().FirstOrDefault(c => c.Name == name1);
+            var deleteCity = unitOfwork.Cities.Get(c => c.Name == resultCity1.Name);
+            unitOfwork.Cities.Delete(deleteCity);
+            unitOfwork.SaveChanges();
 
             Assert.AreEqual(name1, resultCity1.Name);
             Assert.AreEqual(0, unitOfwork.Cities.GetAll().Count());
@@ -57,7 +52,7 @@ namespace WeatherApp.Tests.IntegrationTests.Api
             unitOfwork.Cities.Insert(new City { Name = name1 });
             unitOfwork.SaveChanges();
             var city = unitOfwork.Cities.Get(c => c.Name == name1);
-            var result = controller.Get(city.Id) as OkNegotiatedContentResult<City>;            
+            var result = controller.Get(city.Id) as OkNegotiatedContentResult<CityViewModel>;            
             unitOfwork.Cities.Delete(city);
             unitOfwork.SaveChanges();
 
@@ -74,7 +69,7 @@ namespace WeatherApp.Tests.IntegrationTests.Api
             unitOfwork.Cities.Insert(new City { Name = name1 });
             unitOfwork.SaveChanges();
             var city = unitOfwork.Cities.Get(c => c.Name == name1);
-            var result = controller.Get(city.Name) as OkNegotiatedContentResult<City>;
+            var result = controller.Get(city.Name) as OkNegotiatedContentResult<CityViewModel>;
             unitOfwork.Cities.Delete(city);
             unitOfwork.SaveChanges();
 
@@ -110,10 +105,8 @@ namespace WeatherApp.Tests.IntegrationTests.Api
         }
         [Test]
         [TestCase(null)]
-        [TestCase("PostCity")]
         [TestCase("")]
         [TestCase("   ")]
-        [TestCase("Post123City")]
         public void IntegrationApiPostNewCity_When_InputNameIsValid_Then_CitiesRepoMustContainTheCity(string name)
         {            
             var result = controller.Post(name) as BadRequestErrorMessageResult;
