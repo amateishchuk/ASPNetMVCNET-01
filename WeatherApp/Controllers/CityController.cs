@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Net.Http;
+using System.Web.Mvc;
 using WeatherApp.Domain.Abstract;
 using WeatherApp.Domain.Entities;
 
@@ -24,7 +26,7 @@ namespace WeatherApp.Controllers
         [HttpPost]
         public ActionResult Add(string city)
         {
-            if (ModelState.IsValid)
+            try
             {
                 var result = weatherService.GetWeather(city, 1);
                 var newCity = result.City;
@@ -32,15 +34,31 @@ namespace WeatherApp.Controllers
 
                 unitOfWork.Cities.Insert(newCity);
                 unitOfWork.SaveChanges();
+                return RedirectToAction("ShowWeather", "Weather");
             }
-            return RedirectToAction("ShowWeather", "Weather");            
+            catch (ArgumentNullException)
+            {
+                return HttpNotFound("City can't be whitespaces or empty");
+            }
+            catch (ArgumentException)
+            {
+                return HttpNotFound("City can't be nul");
+            }
+            catch (AggregateException)
+            {
+                return HttpNotFound("Bad city name");
+            }
+            catch (HttpRequestException)
+            {
+                return HttpNotFound("Bad city name");
+            }
         }
         [HttpGet]
         public ActionResult Edit(int id)
         {
             var city = unitOfWork.Cities.Get(c => c.Id == id);
             if (city == null)
-                return HttpNotFound("City with specified ID doesn't exist");
+                return HttpNotFound("The city with specified ID doesn't exist");
 
             return View(city);    
         }
@@ -48,10 +66,14 @@ namespace WeatherApp.Controllers
         [HttpPost]
         public ActionResult Edit(City city)
         {
-            unitOfWork.Cities.Update(city);
-            unitOfWork.SaveChanges();
-
-            return RedirectToAction("ShowWeather", "Weather");
+            if (ModelState.IsValid && unitOfWork.Cities.Get(c => c.Id == city.Id) != null)
+            {
+                unitOfWork.Cities.Update(city);
+                unitOfWork.SaveChanges();
+                return RedirectToAction("ShowWeather", "Weather");
+            }
+            return
+                HttpNotFound("The city with specified ID doesn't exist");
         }
 
         [HttpGet]
@@ -59,7 +81,7 @@ namespace WeatherApp.Controllers
         {
             var city = unitOfWork.Cities.Get(c => c.Id == id);
             if (city == null)
-                return HttpNotFound();
+                return HttpNotFound("The city with specified ID doesn't exist");
 
             return View(city);
         }
@@ -72,9 +94,10 @@ namespace WeatherApp.Controllers
             {
                 unitOfWork.Cities.Delete(city);
                 unitOfWork.SaveChanges();
+                return RedirectToAction("ShowWeather", "Weather");
             }
-
-            return RedirectToAction("ShowWeather", "Weather");
+            else
+                return HttpNotFound("The city with specified ID doesn't exist");
         }
         protected override void Dispose(bool disposing)
         {

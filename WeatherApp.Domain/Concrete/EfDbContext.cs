@@ -8,10 +8,6 @@ namespace WeatherApp.Domain.Concrete
 {
     public class EfDbContext : DbContext
     {
-        static EfDbContext()
-        {
-            Database.SetInitializer(new DbInitializer());
-        }
         // "name=WeatherOwmDb"
         public EfDbContext(string connectionString) : base(connectionString) {  }
 

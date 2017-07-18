@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Net.Http;
 using System.Web.Mvc;
 using WeatherApp.Domain.Abstract;
 using WeatherApp.Domain.Entities;
-using WeatherApp.Domain.OwmService;
 
 namespace WeatherApp.Controllers
 {
@@ -16,7 +16,7 @@ namespace WeatherApp.Controllers
             weatherService = wService;
             this.unitOfWork = uow;
         }
-        public ActionResult ShowWeather(string city = "Kiev", int qtyDays = 7)
+        public ActionResult GetWeather(string city = "Kiev", int qtyDays = 7)
         {
             try
             {
@@ -27,14 +27,26 @@ namespace WeatherApp.Controllers
 
                 return View(result);
             }
-            catch (ArgumentNullException)
-            {
-                return HttpNotFound("City name is incorrect");
-            }
             catch (ArgumentOutOfRangeException)
             {
-                return HttpNotFound("Quantity days must be in range beetwen 1 and 16");
-            }            
+                return HttpNotFound("Quantity days must be between 1 and 16");
+            }
+            catch (ArgumentNullException)
+            {
+                return HttpNotFound("City can't be whitespaces or empty");
+            }
+            catch (ArgumentException)
+            {
+                return HttpNotFound("City can't be null");
+            }
+            catch (AggregateException)
+            {
+                return HttpNotFound("Error occured");
+            }
+            catch (HttpRequestException)
+            {
+                return HttpNotFound("Bad city name");
+            }
         }
         protected override void Dispose(bool disposing)
         {

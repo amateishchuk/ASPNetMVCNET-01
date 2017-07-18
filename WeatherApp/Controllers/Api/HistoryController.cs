@@ -1,6 +1,4 @@
-﻿using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
 using WeatherApp.Domain.Abstract;
 
 namespace WeatherApp.Controllers.Api
@@ -14,9 +12,11 @@ namespace WeatherApp.Controllers.Api
             this.unitOfWork = unitOfWork;
         }
 
-        public HttpResponseMessage GetAllHistory()
+        public IHttpActionResult GetHistory()
         {
-            return Request.CreateResponse(HttpStatusCode.OK, unitOfWork.History.GetAll());
+            var result = unitOfWork.History.GetAll();
+
+            return Ok(result);
         }
 
         protected override void Dispose(bool disposing)

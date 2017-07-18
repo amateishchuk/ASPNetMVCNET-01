@@ -7,7 +7,7 @@ namespace WeatherApp.Domain.Entities
     public class City
     {
         public int Id { get; set; }
-        [Required]
+        [Required]        
         public string Name { get; set; }
 
 

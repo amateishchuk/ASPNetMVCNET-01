@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using WeatherApp.Domain.Abstract;
@@ -18,10 +19,33 @@ namespace WeatherApp.Controllers.Api
 
         public IHttpActionResult GetWeather(string city, int qtyDays)
         {
-            var result = weatherService.GetWeather(city, qtyDays);
-            unitOfWork.History.Insert(new Domain.Entities.HistoryRecord(result));
-            unitOfWork.SaveChanges();
-            return Ok(result);
+            try
+            {
+                var result = weatherService.GetWeather(city, qtyDays);
+                unitOfWork.History.Insert(new Domain.Entities.HistoryRecord(result));
+                unitOfWork.SaveChanges();
+                return Ok(result);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return BadRequest("Quantity days must be between 1 and 16");
+            }
+            catch (ArgumentNullException)
+            {
+                return BadRequest("City can't be whitespaces or empty");
+            }
+            catch (ArgumentException)
+            {
+                return BadRequest("City can't be null");
+            }
+            catch (AggregateException)
+            {
+                return BadRequest("Error occured");
+            }
+            catch (HttpRequestException)
+            {
+                return BadRequest("Bad city name");
+            }
             
         }
 

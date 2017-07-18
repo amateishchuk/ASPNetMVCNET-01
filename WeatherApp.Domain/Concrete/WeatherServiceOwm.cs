@@ -28,11 +28,18 @@ namespace WeatherApp.Domain.Concrete
 
 
             var generatedLink = generateLink(city, qtyDays);
-            var httpClient = new HttpClient();
+            try
+            {
+                var httpClient = new HttpClient();
 
-            var responseString = httpClient.GetStringAsync(generatedLink).Result;
+                var responseString = httpClient.GetStringAsync(generatedLink).Result;
 
-            return JsonConvert.DeserializeObject<WeatherOwm>(responseString);
+                return JsonConvert.DeserializeObject<WeatherOwm>(responseString);
+            }
+            catch (HttpRequestException)
+            {
+                throw;
+            }
         }
         private string generateLink(string city, int qtyDays)
         {

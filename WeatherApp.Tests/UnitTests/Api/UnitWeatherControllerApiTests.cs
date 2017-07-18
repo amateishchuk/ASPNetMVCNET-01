@@ -16,7 +16,8 @@ namespace WeatherApp.Tests.UnitTests.Api
         private readonly Mock<IWeatherService> mockWeatherService;
         private readonly Mock<IRepository<HistoryRecord>> mockHistoryRepo;
         private readonly Mock<IUnitOfWork> mockUnitOfWork;
-        private List<HistoryRecord> history;
+        private readonly WeatherController controller;
+        private List<HistoryRecord> history;        
 
         public UnitWeatherControllerApiTests()
         {
@@ -24,6 +25,7 @@ namespace WeatherApp.Tests.UnitTests.Api
             mockWeatherService = new Mock<IWeatherService>();
             mockHistoryRepo = new Mock<IRepository<HistoryRecord>>();
             mockUnitOfWork = new Mock<IUnitOfWork>();
+            controller = new WeatherController(mockUnitOfWork.Object, mockWeatherService.Object);
         }
 
         [SetUp]
@@ -68,29 +70,17 @@ namespace WeatherApp.Tests.UnitTests.Api
             Assert.AreEqual(name, result.Content.City.Name);
             Assert.AreEqual(qtyDays, result.Content.Cnt);
         }
-        [Test]
-        [TestCase(null, 10)]
-        public void UnitApiGetWeather_When_CityNameIsNull_Then_ThrowsArgumentNullException(string name, int qtyDays)
-        {            
-            WeatherController controller = new WeatherController(mockUnitOfWork.Object, mockWeatherService.Object);
-
-            Assert.Throws<ArgumentNullException>(() => controller.GetWeather(name, qtyDays));
-        }
-        [Test]
-        [TestCase("", 10)]
-        public void UnitApiGetWeather_When_CityNameNullOrEmpty_Then_ThrowsArgumentException(string name, int qtyDays)
-        {
-            WeatherController controller = new WeatherController(mockUnitOfWork.Object, mockWeatherService.Object);
-
-            Assert.Throws<ArgumentException>(() => controller.GetWeather(name, qtyDays));
-        }
+                
         [Test]
         [TestCase("Kiev", 20)]
+        [TestCase(null, 10)]
+        [TestCase("", 10)]
+        [TestCase("123Kiev", 10)]
         public void UnitApiGetWeather_When_QtyDaysIsAboveThan16_Then_ThrowsArgumentOutOfRangeException(string name, int qtyDays)
         {
-            WeatherController controller = new WeatherController(mockUnitOfWork.Object, mockWeatherService.Object);
+            var result = controller.GetWeather(name, qtyDays) as BadRequestErrorMessageResult;
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => controller.GetWeather(name, qtyDays));
+            Assert.IsInstanceOf(typeof(BadRequestErrorMessageResult), result);
         }
     }
 }

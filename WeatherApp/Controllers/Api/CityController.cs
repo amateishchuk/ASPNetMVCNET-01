@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Net;
+﻿using System;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.Results;
 using WeatherApp.Domain.Abstract;
 using WeatherApp.Domain.Entities;
 
@@ -41,8 +39,8 @@ namespace WeatherApp.Controllers.Api
         }
 
         public IHttpActionResult Post(string name)
-        {
-            if (ModelState.IsValid)
+        {           
+            try
             {
                 var result = weatherService.GetWeather(name, 1);
                 var city = result.City;
@@ -52,8 +50,22 @@ namespace WeatherApp.Controllers.Api
                 unitOfWork.SaveChanges();
                 return Ok();
             }
-            else
-                return BadRequest();
+            catch (ArgumentNullException)
+            {
+                return BadRequest("City can't be whitespaces or empty");
+            }
+            catch (ArgumentException)
+            {
+                return BadRequest("City can't be nul");
+            }
+            catch (AggregateException)
+            {
+                return BadRequest("Bad city name");
+            }
+            catch (HttpRequestException)
+            {
+                return BadRequest("Bad city name");
+            }            
         }
         public IHttpActionResult Put(int id, City city)
         {
