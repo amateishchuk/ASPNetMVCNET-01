@@ -30,7 +30,7 @@ namespace WeatherApp.Controllers
             {
                 unitOfWork.Cities.Insert(new City { Name = city });
                 unitOfWork.SaveChanges();
-                return RedirectToAction("ShowWeather", "Weather");
+                return RedirectToAction("GetWeather", "Weather");
             }
             else
                 return HttpNotFound("Bad city name");       
@@ -52,7 +52,7 @@ namespace WeatherApp.Controllers
             {
                 unitOfWork.Cities.Update(city);
                 unitOfWork.SaveChanges();
-                return RedirectToAction("ShowWeather", "Weather");
+                return RedirectToAction("GetWeather", "Weather");
             }
             return
                 HttpNotFound("The city with specified ID doesn't exist");
@@ -76,7 +76,7 @@ namespace WeatherApp.Controllers
             {
                 unitOfWork.Cities.Delete(city);
                 unitOfWork.SaveChanges();
-                return RedirectToAction("ShowWeather", "Weather");
+                return RedirectToAction("GetWeather", "Weather");
             }
             else
                 return HttpNotFound("The city with specified ID doesn't exist");
