@@ -3,9 +3,9 @@
 @{ 
     ViewBag.Title = Model.City.Name;
 }
-<hr />
-<div class="w3-col s12 m12 l3">
-    <h1>@Model.City.Name (@Model.City.Country)</h1>
+
+<div>
+    <h3>@Model.City.Name (@Model.City.Country)</h3>
 
     @using (Html.BeginForm())
     {
@@ -18,17 +18,17 @@
     @Html.Action("GetFavorites", "City")
     @Html.Action("GetHistory", "WeatherHistory")
 </div>
-<div class="w3-col l9">
-    <p>
-        <span class="days-selector">
-            @Html.RouteLink("1 day", "FullWeather", new { city = Model.City.Name, qtyDays = 1 }, new { @class = Model.Cnt == 1 ? "underline" : "" }) |
-            @Html.RouteLink("3 days", "FullWeather", new { city = Model.City.Name, qtyDays = 3 }, new { @class = Model.Cnt == 3 ? "underline" : "" }) |
-            @Html.RouteLink("7 days", "FullWeather", new { city = Model.City.Name, qtyDays = 7 }, new { @class = Model.Cnt == 7 ? "underline" : "" })
-        </span>
-    </p>
+<div>    
     <table class="w3-table w3-bordered w3-centered">
+        <caption>
+            <span class="days-selector">
+                @Html.RouteLink("1 day", "FullWeather", new { city = Model.City.Name, qtyDays = 1 }, new { @class = Model.Cnt == 1 ? "underline" : "" }) |
+                @Html.RouteLink("3 days", "FullWeather", new { city = Model.City.Name, qtyDays = 3 }, new { @class = Model.Cnt == 3 ? "underline" : "" }) |
+                @Html.RouteLink("7 days", "FullWeather", new { city = Model.City.Name, qtyDays = 7 }, new { @class = Model.Cnt == 7 ? "underline" : "" })
+            </span>
+        </caption>
         <tbody>
-            <tr>
+            <tr>                
                 <td><p><img src="~/Content/calendar.png" title="Calendar" /></p></td>
                 <td><p><img src="~/Content/temperature.png" title="Temperature" /></p></td>
                 <td><p><img src="~/Content/humidity.png" title="Humidity" /></p></td>

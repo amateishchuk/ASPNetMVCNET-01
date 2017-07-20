@@ -1,57 +1,93 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+html,
+body {
+    height: 100%;
+}
+body {
     background-image: url(http://cdn.pcwallart.com/images/dusk-sky-stars-wallpaper-2.jpg);
     background-attachment: fixed;
     color: white;
+    display: flex;
+    flex-direction: column;
+}
+header {
+    flex: 0 0 auto;
+    border-bottom: 1px solid #ddd;
+}
+header a img{
+    height: 28px;
+    width: 28px;
+}
+tr:last-of-type{
+    border: 0px!important;
+}
+main {
+    display: flex;
+    justify-content: center;
+    flex: 1 0 auto;
+}
+input {
+    text-align: center !important;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-align: center;
+    border-top: 1px solid #ddd;
+    flex: 0 0 auto;
+}
+footer hr {
+    height: 100px;
+    width: 0;
+    border-right: 1px solid #ddd;
+}
+footer div{    
+    width: 50%;
+}
+img{
+    width:15px;
+    height: 15px;
+}
+li img:hover{
+    content: url(settings_grey.png)
+}
+li{
+    list-style-type: none;
+}
+h3{
+    text-align:center;
 }
 a{
     text-decoration:none;
 }
 a:hover{
-    color: grey;
+    color:lightslategrey!important;
 }
-input{
-    text-align:center;
+table:before {
+    width: 60%;
+    height: 15%;
+    background-color: red;
+    position: absolute;
+    content: "";
+    background: -webkit-linear-gradient(left top, rgba(255, 255, 255, 0.1), rgba(0,0,0,0)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, rgba(255, 255, 255, 0.1), rgba(0,0,0,0)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, rgba(255, 255, 255, 0.1), rgba(0,0,0,0)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.1), rgba(0,0,0,0));
 }
-li {
-    list-style-type: none;
-}
-.days-selector{
-    font-size: 25px;
-}
-img{
-    height: 55px;
-    width: 55px;
-}
-div{
-    padding: 10px;
-}
-hr {
-    margin-left: 40px;
-    margin-right: 40px;
-}
-.underline{
-    text-decoration: underline;
-    font-style: italic;
-}
-h1 img{
-    width: 38px;
-    height:38px;
-}
-table{
-    text-align: center;
-}
-.small-icon{
-    width: 18px;
-    height:18px;
-}
-.small-icon:hover {
-    content: url(settings_grey.png);
-}
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+table:after {
+    width: 60%;
+    height: 15%;
+    background-color: red;
+    position: absolute;
+    content: "";
+    background: -webkit-linear-gradient(left top, rgba(0,0,0,0), rgba(255, 255, 255, 0.1));
+    background: -o-linear-gradient(bottom right, rgba(0,0,0,0), rgba(255, 255, 255, 0.1));
+    background: -moz-linear-gradient(bottom right, rgba(0,0,0,0), rgba(255, 255, 255, 0.1));
+    background: linear-gradient(to bottom right, rgba(0,0,0,0), rgba(255, 255, 255, 0.1));
 }
