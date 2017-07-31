@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -42,7 +43,13 @@ namespace WeatherApp.Domain.Concrete
 
         public void Update(City item)
         {
-            context.Entry(item).State = System.Data.Entity.EntityState.Modified;
+            var cityInDb = context.Cities.Find(item.Id);
+            
+            if (cityInDb != null)
+            {
+                context.Entry(cityInDb).CurrentValues.SetValues(item);
+                context.Entry(cityInDb).State = EntityState.Modified;
+            }            
         }
     }
 }

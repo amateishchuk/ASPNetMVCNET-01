@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using WeatherApp.Domain.OwmService;
 using WeatherApp.OwmService;
 
@@ -16,8 +17,9 @@ namespace WeatherApp.Domain.Entities
 
         
         public int Id { get; set; }
-        public string City { get; set; }
+        public string City { get; set; }        
         public DateTime DateTime { get; set; }
+        [JsonProperty("list")]
         public virtual DayData DayData { get; set; }
         
     }

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Web.Http;
 using WeatherApp.Domain.Abstract;
 using WeatherApp.Domain.Entities;
@@ -44,20 +43,22 @@ namespace WeatherApp.Controllers.Api
             else
                 return BadRequest();
         }
-        public IHttpActionResult Post(string name)
+        [HttpPost]
+        public IHttpActionResult Post([FromBody]string city)
         {
-            if (City.IsValidName(name))
+            if (City.IsValidName(city))
             {
-                unitOfWork.Cities.Insert(new City { Name = name });
+                unitOfWork.Cities.Insert(new City { Name = city });
                 unitOfWork.SaveChanges();
                 return Ok();
             }
             else
                 return BadRequest("Bad city name");
         }
-        public IHttpActionResult Put(int id, City city)
+        [HttpPut]
+        public IHttpActionResult Put(int id, [FromBody]City city)
         {
-            if (ModelState.IsValid && city.Id == id && unitOfWork.Cities.Get(c => c.Id == id) != null)
+            if (ModelState.IsValid && unitOfWork.Cities.Get(c => c.Id == id) != null)
             {                
                 unitOfWork.Cities.Update(city);
                 unitOfWork.SaveChanges();
