@@ -10,8 +10,89 @@
     <Page.Resources>
         <converter:DateFormatConverter x:ConnectionId='1' x:Name="DateToStringConverter"/>
     </Page.Resources>
+    <Grid Background="Blue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBox Text="{Binding City, Mode=TwoWay}" PlaceholderText="Input city name..."
+                 Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3"
+                 TextAlignment="Center"                 
+                 Margin="10"
+                 ></TextBox>
+        <Button Content="Show!"
+                Grid.Column="4" Grid.Row="0" Margin="10"
+                HorizontalAlignment="Center" Width="100"
+                Background="Orange" Foreground="White"
+                Command="{Binding WeatherCommand}">
+        </Button>
+        <MenuFlyoutSeparator
+            Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="6"
+            Background="White">
+        </MenuFlyoutSeparator>
+
+        <Image Source="http://copyrightsmarter-001-site1.itempurl.com/Content/calendar.png" Height="40"
+            Grid.Column="0" Grid.Row="2"></Image>
+        <Image Grid.Row="2" Grid.Column="1" Height="40"
+            Source="http://copyrightsmarter-001-site1.itempurl.com/Content/temperature.png"></Image>
+        <Image Grid.Row="2" Grid.Column="2" Height="40"
+            Source="http://copyrightsmarter-001-site1.itempurl.com/Content/humidity.png"></Image>
+        <Image Grid.Row="2" Grid.Column="3" Height="40"
+            Source="http://copyrightsmarter-001-site1.itempurl.com/Content/pressure.ico"></Image>
+        <Image Grid.Row="2" Grid.Column="4" Height="40"
+            Source="http://copyrightsmarter-001-site1.itempurl.com/Content/wind.png"></Image>
+        <Image Grid.Row="2" Grid.Column="5" Height="40"
+            Source="http://copyrightsmarter-001-site1.itempurl.com/Content/cloud.png"></Image>
+
+        <ListView ItemsSource="{Binding WeatherData.List}" Grid.ColumnSpan="6" Grid.Row="3">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{Binding Dt, Converter={StaticResource DateToStringConverter}}"
+                            Foreground="White" FontSize="13" Grid.Column="0"
+                            TextAlignment="Center" Padding="20,0,0,0"/>
+                        <TextBlock Text="{Binding Temp.Day}"
+                            Foreground="White" FontSize="13" Grid.Column="1"
+                            TextAlignment="Center"/>
+                        <TextBlock Text="{Binding Humidity}"
+                            Foreground="White" FontSize="13" Grid.Column="2"
+                            TextAlignment="Center"/>
+                        <TextBlock Text="{Binding Pressure}"
+                            Foreground="White" FontSize="13" Grid.Column="3"
+                            TextAlignment="Center"/>
+                        <TextBlock Text="{Binding SpeedDeg}"
+                            Foreground="White" FontSize="13" Grid.Column="4"
+                            TextAlignment="Center"/>
+                        <TextBlock Text="{Binding Clouds}"
+                            Foreground="White" FontSize="13" Grid.Column="5"
+                            TextAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+
+    <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
@@ -110,6 +191,6 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
-    </Grid>
+    </Grid>-->
 </Page>
 

@@ -15,25 +15,26 @@ namespace WeatherApp.UWP.ViewModels
     public class WeatherViewModel : ViewModelBase
     {
         private WeatherService weatherService;
+        private int qtyDays { get; set; }
 
         public Weather WeatherData { get; set; }
         public ICommand WeatherCommand { get; set; }
 
         public string City { get; set; }
-        public int QtyDays { get; set; }
+        
 
         public WeatherViewModel()
         {
             weatherService = new WeatherService();
             WeatherCommand = new RelayCommand(GetWeather);
-            QtyDays = 1;
+            qtyDays = 7;
         }
 
         public async void GetWeather()
         {
             try
             {
-                WeatherData = await weatherService.GetWeather(City, QtyDays);
+                WeatherData = await weatherService.GetWeather(City, qtyDays);
                 RaisePropertyChanged(() => WeatherData);
             }
             catch (Exception ex)
