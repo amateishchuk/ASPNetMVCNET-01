@@ -1,0 +1,80 @@
+﻿<Page
+    x:Class="UwpSample.MvvmLight.Views.StudentView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converter="using:UwpSample.Converters" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    DataContext="{Binding StudentVMInstance, Source={StaticResource Locator}}">
+    <Page.Resources>
+        <converter:DateFormatConverter x:Name="DateToStringConverter"/>
+    </Page.Resources>
+    
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="55"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="170"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Fill="{StaticResource IndigoBrush}" Grid.Row="0" Grid.ColumnSpan="2"/>
+        <TextBlock Text="{Binding Title}"
+            Margin="18"
+            Style="{StaticResource PageTitle}"
+            TextAlignment="Center"
+            Grid.Row="0"
+            Grid.ColumnSpan="2"/>
+        <Button Content="&#xE72B;"
+            FontFamily="Segoe MDL2 Assets"
+            Command="{Binding GoBackCommand}"
+            FontSize="20"
+            Foreground="White"
+            Margin="18"
+            Grid.Row="0"
+            Grid.Column="0"/>
+
+        <TextBlock Text="First Name:"
+            Style="{StaticResource DetailsHint}"
+            Grid.Column="0"
+            Grid.Row="2"/>
+        <TextBlock Text="{Binding FirstName}"
+            Style="{StaticResource DetailsText}"
+            Grid.Column="1"
+            Grid.Row="2"/>
+
+        <TextBlock Text="Last Name:"
+            Style="{StaticResource DetailsHint}"
+            Grid.Column="0"
+            Grid.Row="3"/>
+        <TextBlock Text="{Binding LastName}"
+            Style="{StaticResource DetailsText}"
+            Grid.Column="1"
+            Grid.Row="3"/>
+
+        <TextBlock Text="Birth Date:"
+            Style="{StaticResource DetailsHint}"
+            Grid.Column="0"
+            Grid.Row="4"/>
+        <TextBlock Text="{Binding BirthDate, Converter={StaticResource DateToStringConverter}}"
+            Style="{StaticResource DetailsText}"
+            Grid.Column="1"
+            Grid.Row="4"/>
+
+        <TextBlock Text="City:"
+            Style="{StaticResource DetailsHint}"
+            Grid.Column="0"
+            Grid.Row="5"/>
+        <TextBlock Text="{Binding City}"
+            Style="{StaticResource DetailsText}"
+            Grid.Column="1"
+            Grid.Row="5"/>
+    </Grid>
+</Page>

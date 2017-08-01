@@ -1,0 +1,1 @@
+C:\Users\amate\Downloads\ASPNetMVCNET-01\WeatherApp.UWP\WeatherApp.UWP.csproj;x86
