@@ -1,9 +1,6 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Views;
+﻿using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
-using UwpSample.MvvmLight.ViewModels;
-using UwpSample.MvvmLight.Views;
+using WeatherApp.UWP.ViewModels;
 
 namespace UwpSample.MvvmLight
 {
@@ -15,64 +12,15 @@ namespace UwpSample.MvvmLight
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-
-            var navigationService = new NavigationService();
-            navigationService.Configure(nameof(AcademyViewModel), typeof(AcademyView));
-            navigationService.Configure(nameof(StudentViewModel), typeof(StudentView));
-
-            if (ViewModelBase.IsInDesignModeStatic)
-            {
-                // Create design time view services and models
-            }
-            else
-            {
-                // Create run time view services and models
-            }
-
-            //Register your services used here
-            //SimpleIoc.Default.Register<INavigationService, NavigationService>();
-            SimpleIoc.Default.Register<INavigationService>(() => navigationService);
-            SimpleIoc.Default.Register<AcademyViewModel>();
-            SimpleIoc.Default.Register<StudentViewModel>();
-            
-            ServiceLocator.Current.GetInstance<StudentViewModel>();
+            SimpleIoc.Default.Register<WeatherViewModel>();
         }
 
-
-        // <summary>
-        // Gets the Academy view model.
-        // </summary>
-        // <value>
-        // The Academy view model.
-        // </value>
-        public AcademyViewModel AcademyVMInstance
+        public WeatherViewModel WeatherVMInstance
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<AcademyViewModel>();
+                return ServiceLocator.Current.GetInstance<WeatherViewModel>();
             }
-        }
-
-        // <summary>
-        // Gets the Student view model.
-        // </summary>
-        // <value>
-        // The Student view model.
-        // </value>
-        public StudentViewModel StudentVMInstance
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<StudentViewModel>();
-            }
-        }
-
-        // <summary>
-        // The cleanup.
-        // </summary>
-        public static void Cleanup()
-        {
-            // TODO Clear the ViewModels
         }
     }
 }

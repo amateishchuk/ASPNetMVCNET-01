@@ -132,41 +132,35 @@ namespace WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[16];
+            _typeNameTable = new string[13];
             _typeNameTable[0] = "UwpSample.MvvmLight.ViewModelLocator";
             _typeNameTable[1] = "Object";
-            _typeNameTable[2] = "UwpSample.MvvmLight.ViewModels.AcademyViewModel";
-            _typeNameTable[3] = "UwpSample.MvvmLight.ViewModels.BaseViewModel";
-            _typeNameTable[4] = "GalaSoft.MvvmLight.ViewModelBase";
-            _typeNameTable[5] = "GalaSoft.MvvmLight.ObservableObject";
-            _typeNameTable[6] = "UwpSample.MvvmLight.ViewModels.StudentViewModel";
-            _typeNameTable[7] = "WeatherApp.UWP.MainPage";
-            _typeNameTable[8] = "Windows.UI.Xaml.Controls.Page";
-            _typeNameTable[9] = "Windows.UI.Xaml.Controls.UserControl";
-            _typeNameTable[10] = "Windows.UI.Color";
-            _typeNameTable[11] = "System.ValueType";
-            _typeNameTable[12] = "Byte";
-            _typeNameTable[13] = "UwpSample.Converters.DateFormatConverter";
-            _typeNameTable[14] = "UwpSample.MvvmLight.Views.AcademyView";
-            _typeNameTable[15] = "UwpSample.MvvmLight.Views.StudentView";
+            _typeNameTable[2] = "WeatherApp.UWP.ViewModels.WeatherViewModel";
+            _typeNameTable[3] = "GalaSoft.MvvmLight.ViewModelBase";
+            _typeNameTable[4] = "GalaSoft.MvvmLight.ObservableObject";
+            _typeNameTable[5] = "WeatherApp.UWP.MainPage";
+            _typeNameTable[6] = "Windows.UI.Xaml.Controls.Page";
+            _typeNameTable[7] = "Windows.UI.Xaml.Controls.UserControl";
+            _typeNameTable[8] = "Windows.UI.Color";
+            _typeNameTable[9] = "System.ValueType";
+            _typeNameTable[10] = "Byte";
+            _typeNameTable[11] = "UwpSample.Converters.DateFormatConverter";
+            _typeNameTable[12] = "WeatherApp.UWP.Views.WeatherView";
 
-            _typeTable = new global::System.Type[16];
+            _typeTable = new global::System.Type[13];
             _typeTable[0] = typeof(global::UwpSample.MvvmLight.ViewModelLocator);
             _typeTable[1] = typeof(global::System.Object);
-            _typeTable[2] = typeof(global::UwpSample.MvvmLight.ViewModels.AcademyViewModel);
-            _typeTable[3] = typeof(global::UwpSample.MvvmLight.ViewModels.BaseViewModel);
-            _typeTable[4] = typeof(global::GalaSoft.MvvmLight.ViewModelBase);
-            _typeTable[5] = typeof(global::GalaSoft.MvvmLight.ObservableObject);
-            _typeTable[6] = typeof(global::UwpSample.MvvmLight.ViewModels.StudentViewModel);
-            _typeTable[7] = typeof(global::WeatherApp.UWP.MainPage);
-            _typeTable[8] = typeof(global::Windows.UI.Xaml.Controls.Page);
-            _typeTable[9] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
-            _typeTable[10] = typeof(global::Windows.UI.Color);
-            _typeTable[11] = typeof(global::System.ValueType);
-            _typeTable[12] = typeof(global::System.Byte);
-            _typeTable[13] = typeof(global::UwpSample.Converters.DateFormatConverter);
-            _typeTable[14] = typeof(global::UwpSample.MvvmLight.Views.AcademyView);
-            _typeTable[15] = typeof(global::UwpSample.MvvmLight.Views.StudentView);
+            _typeTable[2] = typeof(global::WeatherApp.UWP.ViewModels.WeatherViewModel);
+            _typeTable[3] = typeof(global::GalaSoft.MvvmLight.ViewModelBase);
+            _typeTable[4] = typeof(global::GalaSoft.MvvmLight.ObservableObject);
+            _typeTable[5] = typeof(global::WeatherApp.UWP.MainPage);
+            _typeTable[6] = typeof(global::Windows.UI.Xaml.Controls.Page);
+            _typeTable[7] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
+            _typeTable[8] = typeof(global::Windows.UI.Color);
+            _typeTable[9] = typeof(global::System.ValueType);
+            _typeTable[10] = typeof(global::System.Byte);
+            _typeTable[11] = typeof(global::UwpSample.Converters.DateFormatConverter);
+            _typeTable[12] = typeof(global::WeatherApp.UWP.Views.WeatherView);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -202,12 +196,11 @@ namespace WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo
         }
 
         private object Activate_0_ViewModelLocator() { return new global::UwpSample.MvvmLight.ViewModelLocator(); }
-        private object Activate_3_BaseViewModel() { return new global::UwpSample.MvvmLight.ViewModels.BaseViewModel(); }
-        private object Activate_5_ObservableObject() { return new global::GalaSoft.MvvmLight.ObservableObject(); }
-        private object Activate_7_MainPage() { return new global::WeatherApp.UWP.MainPage(); }
-        private object Activate_13_DateFormatConverter() { return new global::UwpSample.Converters.DateFormatConverter(); }
-        private object Activate_14_AcademyView() { return new global::UwpSample.MvvmLight.Views.AcademyView(); }
-        private object Activate_15_StudentView() { return new global::UwpSample.MvvmLight.Views.StudentView(); }
+        private object Activate_2_WeatherViewModel() { return new global::WeatherApp.UWP.ViewModels.WeatherViewModel(); }
+        private object Activate_4_ObservableObject() { return new global::GalaSoft.MvvmLight.ObservableObject(); }
+        private object Activate_5_MainPage() { return new global::WeatherApp.UWP.MainPage(); }
+        private object Activate_11_DateFormatConverter() { return new global::UwpSample.Converters.DateFormatConverter(); }
+        private object Activate_12_WeatherView() { return new global::WeatherApp.UWP.Views.WeatherView(); }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -222,8 +215,7 @@ namespace WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo
             case 0:   //  UwpSample.MvvmLight.ViewModelLocator
                 userType = new global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.Activator = Activate_0_ViewModelLocator;
-                userType.AddMemberName("AcademyVMInstance");
-                userType.AddMemberName("StudentVMInstance");
+                userType.AddMemberName("WeatherVMInstance");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
@@ -232,54 +224,40 @@ namespace WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo
                 xamlType = new global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 2:   //  UwpSample.MvvmLight.ViewModels.AcademyViewModel
-                userType = new global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("UwpSample.MvvmLight.ViewModels.BaseViewModel"));
+            case 2:   //  WeatherApp.UWP.ViewModels.WeatherViewModel
+                userType = new global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("GalaSoft.MvvmLight.ViewModelBase"));
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 3:   //  UwpSample.MvvmLight.ViewModels.BaseViewModel
-                userType = new global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("GalaSoft.MvvmLight.ViewModelBase"));
-                userType.Activator = Activate_3_BaseViewModel;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 4:   //  GalaSoft.MvvmLight.ViewModelBase
+            case 3:   //  GalaSoft.MvvmLight.ViewModelBase
                 userType = new global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("GalaSoft.MvvmLight.ObservableObject"));
                 xamlType = userType;
                 break;
 
-            case 5:   //  GalaSoft.MvvmLight.ObservableObject
+            case 4:   //  GalaSoft.MvvmLight.ObservableObject
                 userType = new global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_5_ObservableObject;
+                userType.Activator = Activate_4_ObservableObject;
                 xamlType = userType;
                 break;
 
-            case 6:   //  UwpSample.MvvmLight.ViewModels.StudentViewModel
-                userType = new global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("UwpSample.MvvmLight.ViewModels.BaseViewModel"));
-                userType.SetIsReturnTypeStub();
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 7:   //  WeatherApp.UWP.MainPage
+            case 5:   //  WeatherApp.UWP.MainPage
                 userType = new global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_7_MainPage;
+                userType.Activator = Activate_5_MainPage;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 8:   //  Windows.UI.Xaml.Controls.Page
+            case 6:   //  Windows.UI.Xaml.Controls.Page
                 xamlType = new global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 9:   //  Windows.UI.Xaml.Controls.UserControl
+            case 7:   //  Windows.UI.Xaml.Controls.UserControl
                 xamlType = new global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 10:   //  Windows.UI.Color
+            case 8:   //  Windows.UI.Color
                 userType = new global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
                 userType.AddMemberName("A");
                 userType.AddMemberName("B");
@@ -288,34 +266,27 @@ namespace WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 11:   //  System.ValueType
+            case 9:   //  System.ValueType
                 userType = new global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 xamlType = userType;
                 break;
 
-            case 12:   //  Byte
+            case 10:   //  Byte
                 userType = new global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 13:   //  UwpSample.Converters.DateFormatConverter
+            case 11:   //  UwpSample.Converters.DateFormatConverter
                 userType = new global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_13_DateFormatConverter;
+                userType.Activator = Activate_11_DateFormatConverter;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 14:   //  UwpSample.MvvmLight.Views.AcademyView
+            case 12:   //  WeatherApp.UWP.Views.WeatherView
                 userType = new global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_14_AcademyView;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 15:   //  UwpSample.MvvmLight.Views.StudentView
-                userType = new global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_15_StudentView;
+                userType.Activator = Activate_12_WeatherView;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
@@ -324,52 +295,47 @@ namespace WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo
         }
 
 
-        private object get_0_ViewModelLocator_AcademyVMInstance(object instance)
+        private object get_0_ViewModelLocator_WeatherVMInstance(object instance)
         {
             var that = (global::UwpSample.MvvmLight.ViewModelLocator)instance;
-            return that.AcademyVMInstance;
+            return that.WeatherVMInstance;
         }
-        private object get_1_ViewModelLocator_StudentVMInstance(object instance)
-        {
-            var that = (global::UwpSample.MvvmLight.ViewModelLocator)instance;
-            return that.StudentVMInstance;
-        }
-        private object get_2_Color_A(object instance)
+        private object get_1_Color_A(object instance)
         {
             var that = (global::Windows.UI.Color)instance;
             return that.A;
         }
-        private void set_2_Color_A(object instance, object Value)
+        private void set_1_Color_A(object instance, object Value)
         {
             var that = (global::Windows.UI.Color)instance;
             that.A = (global::System.Byte)Value;
         }
-        private object get_3_Color_B(object instance)
+        private object get_2_Color_B(object instance)
         {
             var that = (global::Windows.UI.Color)instance;
             return that.B;
         }
-        private void set_3_Color_B(object instance, object Value)
+        private void set_2_Color_B(object instance, object Value)
         {
             var that = (global::Windows.UI.Color)instance;
             that.B = (global::System.Byte)Value;
         }
-        private object get_4_Color_G(object instance)
+        private object get_3_Color_G(object instance)
         {
             var that = (global::Windows.UI.Color)instance;
             return that.G;
         }
-        private void set_4_Color_G(object instance, object Value)
+        private void set_3_Color_G(object instance, object Value)
         {
             var that = (global::Windows.UI.Color)instance;
             that.G = (global::System.Byte)Value;
         }
-        private object get_5_Color_R(object instance)
+        private object get_4_Color_R(object instance)
         {
             var that = (global::Windows.UI.Color)instance;
             return that.R;
         }
-        private void set_5_Color_R(object instance, object Value)
+        private void set_4_Color_R(object instance, object Value)
         {
             var that = (global::Windows.UI.Color)instance;
             that.R = (global::System.Byte)Value;
@@ -382,41 +348,35 @@ namespace WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo
 
             switch (longMemberName)
             {
-            case "UwpSample.MvvmLight.ViewModelLocator.AcademyVMInstance":
+            case "UwpSample.MvvmLight.ViewModelLocator.WeatherVMInstance":
                 userType = (global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlUserType)GetXamlTypeByName("UwpSample.MvvmLight.ViewModelLocator");
-                xamlMember = new global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlMember(this, "AcademyVMInstance", "UwpSample.MvvmLight.ViewModels.AcademyViewModel");
-                xamlMember.Getter = get_0_ViewModelLocator_AcademyVMInstance;
-                xamlMember.SetIsReadOnly();
-                break;
-            case "UwpSample.MvvmLight.ViewModelLocator.StudentVMInstance":
-                userType = (global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlUserType)GetXamlTypeByName("UwpSample.MvvmLight.ViewModelLocator");
-                xamlMember = new global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlMember(this, "StudentVMInstance", "UwpSample.MvvmLight.ViewModels.StudentViewModel");
-                xamlMember.Getter = get_1_ViewModelLocator_StudentVMInstance;
+                xamlMember = new global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlMember(this, "WeatherVMInstance", "WeatherApp.UWP.ViewModels.WeatherViewModel");
+                xamlMember.Getter = get_0_ViewModelLocator_WeatherVMInstance;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Windows.UI.Color.A":
                 userType = (global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Windows.UI.Color");
                 xamlMember = new global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlMember(this, "A", "Byte");
-                xamlMember.Getter = get_2_Color_A;
-                xamlMember.Setter = set_2_Color_A;
+                xamlMember.Getter = get_1_Color_A;
+                xamlMember.Setter = set_1_Color_A;
                 break;
             case "Windows.UI.Color.B":
                 userType = (global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Windows.UI.Color");
                 xamlMember = new global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlMember(this, "B", "Byte");
-                xamlMember.Getter = get_3_Color_B;
-                xamlMember.Setter = set_3_Color_B;
+                xamlMember.Getter = get_2_Color_B;
+                xamlMember.Setter = set_2_Color_B;
                 break;
             case "Windows.UI.Color.G":
                 userType = (global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Windows.UI.Color");
                 xamlMember = new global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlMember(this, "G", "Byte");
-                xamlMember.Getter = get_4_Color_G;
-                xamlMember.Setter = set_4_Color_G;
+                xamlMember.Getter = get_3_Color_G;
+                xamlMember.Setter = set_3_Color_G;
                 break;
             case "Windows.UI.Color.R":
                 userType = (global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Windows.UI.Color");
                 xamlMember = new global::WeatherApp.UWP.WeatherApp_UWP_XamlTypeInfo.XamlMember(this, "R", "Byte");
-                xamlMember.Getter = get_5_Color_R;
-                xamlMember.Setter = set_5_Color_R;
+                xamlMember.Getter = get_4_Color_R;
+                xamlMember.Setter = set_4_Color_R;
                 break;
             }
             return xamlMember;

@@ -31,13 +31,13 @@
     <AppXManifest Include="C:\Users\amate\Downloads\ASPNetMVCNET-01\WeatherApp.UWP\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-08-01T04:49:26.178</Modified>
+      <Modified>2017-08-01T05:31:21.009</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\amate\Downloads\ASPNetMVCNET-01\WeatherApp.UWP\bin\x86\Debug\WeatherApp.UWP.exe">
       <PackagePath>entrypoint\WeatherApp.UWP.exe</PackagePath>
-      <Modified>2017-08-01T04:49:20.850</Modified>
+      <Modified>2017-08-01T05:31:16.743</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\amate\.nuget\packages\CommonServiceLocator\1.3.0\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll">
       <PackagePath>Microsoft.Practices.ServiceLocation.dll</PackagePath>
@@ -575,7 +575,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\amate\Downloads\ASPNetMVCNET-01\WeatherApp.UWP\bin\x86\Debug\WeatherApp.UWP.xr.xml">
       <PackagePath>WeatherApp.UWP.xr.xml</PackagePath>
-      <Modified>2017-08-01T04:49:19.928</Modified>
+      <Modified>2017-08-01T05:31:16.325</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.15063.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -584,11 +584,11 @@
     <AppxPackagedFile Include="C:\Users\amate\Downloads\ASPNetMVCNET-01\WeatherApp.UWP\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-08-01T04:49:25.121</Modified>
+      <Modified>2017-08-01T05:31:19.242</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\amate\Downloads\ASPNetMVCNET-01\WeatherApp.UWP\bin\x86\Debug\Core\WeatherApp.UWP.exe">
       <PackagePath>WeatherApp.UWP.exe</PackagePath>
-      <Modified>2017-08-01T04:49:26.158</Modified>
+      <Modified>2017-08-01T05:31:20.990</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

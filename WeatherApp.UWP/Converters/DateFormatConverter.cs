@@ -10,7 +10,8 @@ namespace UwpSample.Converters
             if (value == null)
                 return null;
 
-            DateTime dt = DateTime.Parse(value.ToString());
+            DateTime dt = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+            dt = dt.AddSeconds(System.Convert.ToDouble(value.ToString())).ToLocalTime();
             return dt.ToString("dd/MM/yyyy");
         }
 

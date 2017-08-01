@@ -24250,13 +24250,13 @@
         "target": "Package",
         "version": "5.2.3"
       },
+      "MvvmLight": {
+        "target": "Package",
+        "version": "5.3.0"
+      },
       "Newtonsoft.Json": {
         "target": "Package",
         "version": "10.0.3"
-      },
-      "MvvmLight": {
-        "target": "Package",
-        "version": "[5.3.0, )"
       }
     },
     "frameworks": {
@@ -24265,6 +24265,10 @@
           "Microsoft.NETCore.UniversalWindowsPlatform": {
             "target": "Package",
             "version": "5.2.3"
+          },
+          "MvvmLight": {
+            "target": "Package",
+            "version": "5.3.0"
           },
           "Newtonsoft.Json": {
             "target": "Package",
