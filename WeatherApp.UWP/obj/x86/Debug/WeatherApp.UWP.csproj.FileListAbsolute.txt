@@ -239,4 +239,3 @@ C:\Users\amate\Downloads\ASPNetMVCNET-01\WeatherApp.UWP\obj\x86\Debug\qualifiers
 C:\Users\amate\Downloads\ASPNetMVCNET-01\WeatherApp.UWP\obj\x86\Debug\MultipleQualifiersPerDimensionFound.txt
 C:\Users\amate\Downloads\ASPNetMVCNET-01\WeatherApp.UWP\obj\x86\Debug\GalaSoft.MvvmLight.Platform.pri.xml
 C:\Users\amate\Downloads\ASPNetMVCNET-01\WeatherApp.UWP\obj\x86\Debug\ProjectArchitectures.txt
-C:\Users\amate\Downloads\ASPNetMVCNET-01\WeatherApp.UWP\obj\x86\Debug\WeatherApp.UWP.csprojResolveAssemblyReference.cache
