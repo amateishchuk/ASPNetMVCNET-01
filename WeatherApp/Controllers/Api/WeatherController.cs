@@ -23,7 +23,7 @@ namespace WeatherApp.Controllers.Api
             try
             {
                 var result = await weatherService.GetWeatherAsync(city, qtyDays);
-                unitOfWork.History.Insert(new Domain.Entities.HistoryRecord(result));
+                await unitOfWork.History.InsertAsync(new Domain.Entities.HistoryRecord(result));
                 await unitOfWork.SaveChangesAsync();
                 return Ok(result);
             }

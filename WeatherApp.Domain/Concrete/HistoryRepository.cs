@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -54,6 +55,17 @@ namespace WeatherApp.Domain.Concrete
             if (context.WeatherHistories.Count() > 14)
             {
                 var firstHistory = context.WeatherHistories.FirstOrDefault();
+                context.WeatherHistories.Remove(firstHistory);
+            }
+
+            context.WeatherHistories.Add(item);
+        }
+
+        public async Task InsertAsync(HistoryRecord item)
+        {
+            if (await context.WeatherHistories.CountAsync() > 14)
+            {
+                var firstHistory = await context.WeatherHistories.FirstOrDefaultAsync();
                 context.WeatherHistories.Remove(firstHistory);
             }
 

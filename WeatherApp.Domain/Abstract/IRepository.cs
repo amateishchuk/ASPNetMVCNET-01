@@ -11,6 +11,8 @@ namespace WeatherApp.Domain.Abstract
     {
         IEnumerable<T> GetAll();
         void Insert(T item);
+
+        Task InsertAsync(T item);
         void Update(T item);
         void Delete(T item);
         T Get(Func<T, bool> predicate);

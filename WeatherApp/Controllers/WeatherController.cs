@@ -23,7 +23,7 @@ namespace WeatherApp.Controllers
             {
                 var result = await weatherService.GetWeatherAsync(city, qtyDays);
                 var record = new HistoryRecord(result);
-                unitOfWork.History.Insert(record);
+                await unitOfWork.History.InsertAsync(record);
                 await unitOfWork.SaveChangesAsync();
 
                 return View(result);

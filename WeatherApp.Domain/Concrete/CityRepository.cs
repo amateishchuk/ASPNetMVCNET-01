@@ -68,5 +68,10 @@ namespace WeatherApp.Domain.Concrete
                 context.Entry(cityInDb).State = EntityState.Modified;                
             }            
         }
+
+        public Task InsertAsync(City item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
