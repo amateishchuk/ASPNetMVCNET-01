@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using WeatherApp.Domain.Abstract;
 using WeatherApp.Domain.Entities;
@@ -24,21 +25,21 @@ namespace WeatherApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(string city)
+        public async Task<ActionResult> Add(string city)
         {
             if (City.IsValidName(city))
             {
-                unitOfWork.Cities.Insert(new City { Name = city });
-                unitOfWork.SaveChanges();
+                await unitOfWork.Cities.InsertAsync(new City { Name = city });
+                await unitOfWork.SaveChangesAsync();
                 return RedirectToAction("GetWeather", "Weather");
             }
             else
                 return HttpNotFound("Bad city name");       
         }
         [HttpGet]
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            var city = unitOfWork.Cities.Get(c => c.Id == id);
+            var city = await unitOfWork.Cities.GetAsync(c => c.Id == id);
             if (city == null)
                 return HttpNotFound("The city with specified ID doesn't exist");
 
@@ -46,12 +47,12 @@ namespace WeatherApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(City city)
+        public async Task<ActionResult> Edit(City city)
         {
-            if (ModelState.IsValid && unitOfWork.Cities.Get(c => c.Id == city.Id) != null)
+            if (ModelState.IsValid && await unitOfWork.Cities.GetAsync(c => c.Id == city.Id) != null)
             {
                 unitOfWork.Cities.Update(city);
-                unitOfWork.SaveChanges();
+                await unitOfWork.SaveChangesAsync();
                 return RedirectToAction("GetWeather", "Weather");
             }
             return
@@ -59,9 +60,9 @@ namespace WeatherApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var city = unitOfWork.Cities.Get(c => c.Id == id);
+            var city =  await unitOfWork.Cities.GetAsync(c => c.Id == id);
             if (city == null)
                 return HttpNotFound("The city with specified ID doesn't exist");
 
@@ -69,13 +70,13 @@ namespace WeatherApp.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirm(int id)
+        public async Task<ActionResult> DeleteConfirm(int id)
         {
-            var city = unitOfWork.Cities.Get(c => c.Id == id);
+            var city = await unitOfWork.Cities.GetAsync(c => c.Id == id);
             if (city != null)
             {
                 unitOfWork.Cities.Delete(city);
-                unitOfWork.SaveChanges();
+                await unitOfWork.SaveChangesAsync();
                 return RedirectToAction("GetWeather", "Weather");
             }
             else

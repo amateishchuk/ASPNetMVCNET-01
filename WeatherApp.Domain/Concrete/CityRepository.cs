@@ -51,9 +51,9 @@ namespace WeatherApp.Domain.Concrete
             return await context.Cities.FirstOrDefaultAsync(predicate);
         }
 
-        public async void Insert(City item)
+        public void Insert(City item)
         {
-            var city = await context.Cities.FirstOrDefaultAsync(c => c.Name == item.Name);
+            var city = context.Cities.FirstOrDefaultAsync(c => c.Name == item.Name);
             if (city == null)
                 context.Cities.Add(item);
         }
@@ -69,9 +69,11 @@ namespace WeatherApp.Domain.Concrete
             }            
         }
 
-        public Task InsertAsync(City item)
+        public async Task InsertAsync(City item)
         {
-            throw new NotImplementedException();
+            var city = await context.Cities.FirstOrDefaultAsync(c => c.Name == item.Name);
+            if (city == null)
+                context.Cities.Add(item);
         }
     }
 }

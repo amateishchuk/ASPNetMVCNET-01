@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web.Http;
 using WeatherApp.Domain.Abstract;
 using WeatherApp.Domain.Entities;
@@ -44,12 +45,12 @@ namespace WeatherApp.Controllers.Api
                 return BadRequest();
         }
         [HttpPost]
-        public IHttpActionResult Post([FromBody]string city)
+        public async Task<IHttpActionResult> Post([FromBody]string city)
         {
             if (City.IsValidName(city))
             {
-                unitOfWork.Cities.Insert(new City { Name = city });
-                unitOfWork.SaveChanges();
+                await unitOfWork.Cities.InsertAsync(new City { Name = city });
+                await unitOfWork.SaveChangesAsync();
                 return Ok();
             }
             else
