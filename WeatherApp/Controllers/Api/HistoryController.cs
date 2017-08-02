@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Threading.Tasks;
+using System.Web.Http;
 using WeatherApp.Domain.Abstract;
 
 namespace WeatherApp.Controllers.Api
@@ -12,9 +13,9 @@ namespace WeatherApp.Controllers.Api
             this.unitOfWork = unitOfWork;
         }
 
-        public IHttpActionResult GetHistory()
+        public async Task<IHttpActionResult> GetHistory()
         {
-            var result = unitOfWork.History.GetAll();
+            var result = await unitOfWork.History.GetAllAsync();
 
             return Ok(result);
         }

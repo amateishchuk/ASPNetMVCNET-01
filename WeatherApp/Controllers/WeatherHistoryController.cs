@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using WeatherApp.Domain.Abstract;
@@ -21,9 +22,9 @@ namespace WeatherApp.Controllers
             var smallList = unitOfWork.History.GetAll().Take(5);
             return PartialView(smallList);
         }
-        public ActionResult GetExtendedHistory()
+        public async Task<ActionResult> GetExtendedHistory()
         {
-            var fullHistory = unitOfWork.History.GetAll();
+            var fullHistory = await unitOfWork.History.GetAllAsync();
             return View(fullHistory);
         }
         protected override void Dispose(bool disposing)

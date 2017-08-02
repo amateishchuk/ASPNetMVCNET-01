@@ -17,14 +17,15 @@ namespace WeatherApp.Controllers.Api
             this.unitOfWork = unitOfWork;
             Mapper.Initialize(cfg => cfg.CreateMap<City, CityViewModel>());
         }
-        public IHttpActionResult GetCities()
+        public async Task<IHttpActionResult> GetCities()
         {
-            var result = Mapper.Map<IEnumerable<City>, IEnumerable<CityViewModel>>(unitOfWork.Cities.GetAll());
+            var cities = await unitOfWork.Cities.GetAllAsync();
+            var result = Mapper.Map<IEnumerable<City>, IEnumerable<CityViewModel>>(cities);
             return Ok(result);
         }
-        public IHttpActionResult Get(int id)
+        public async Task<IHttpActionResult> Get(int id)
         {
-            var city = unitOfWork.Cities.Get(c => c.Id == id);
+            var city = await unitOfWork.Cities.GetAsync(c => c.Id == id);
             if (city != null)
             {
                 var result = Mapper.Map<City, CityViewModel>(city);
@@ -33,9 +34,9 @@ namespace WeatherApp.Controllers.Api
             else
                 return BadRequest();
         }
-        public IHttpActionResult Get(string name)
+        public async Task<IHttpActionResult> Get(string name)
         {
-            var city = unitOfWork.Cities.Get(c => c.Name.ToLower() == name.ToLower());
+            var city = await unitOfWork.Cities.GetAsync(c => c.Name.ToLower() == name.ToLower());
             if (city != null)
             {
                 var result = Mapper.Map<City, CityViewModel>(city);
@@ -57,24 +58,24 @@ namespace WeatherApp.Controllers.Api
                 return BadRequest("Bad city name");
         }
         [HttpPut]
-        public IHttpActionResult Put(int id, [FromBody]City city)
+        public async Task<IHttpActionResult> Put(int id, [FromBody]City city)
         {
-            if (ModelState.IsValid && unitOfWork.Cities.Get(c => c.Id == id) != null)
+            if (ModelState.IsValid && await unitOfWork.Cities.GetAsync(c => c.Id == id) != null)
             {                
                 unitOfWork.Cities.Update(city);
-                unitOfWork.SaveChanges();
+                await unitOfWork.SaveChangesAsync();
                 return Ok();
             }
             else
                 return BadRequest();
         }
-        public IHttpActionResult Delete(int id)
+        public async Task<IHttpActionResult> Delete(int id)
         {
-            var city = unitOfWork.Cities.Get(c => c.Id == id);
+            var city = await unitOfWork.Cities.GetAsync(c => c.Id == id);
             if (city != null)
             {
                 unitOfWork.Cities.Delete(city);
-                unitOfWork.SaveChanges();
+                await unitOfWork.SaveChangesAsync();
                 return Ok();
             }
             else
