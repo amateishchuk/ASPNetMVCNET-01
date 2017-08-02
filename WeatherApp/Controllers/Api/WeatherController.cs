@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using WeatherApp.Domain.Abstract;
 
@@ -17,13 +18,13 @@ namespace WeatherApp.Controllers.Api
             this.weatherService = weatherService;
         }
 
-        public IHttpActionResult GetWeather(string city, int qtyDays)
+        public async Task<IHttpActionResult> GetWeather(string city, int qtyDays)
         {
             try
             {
-                var result = weatherService.GetWeather(city, qtyDays);
+                var result = await weatherService.GetWeatherAsync(city, qtyDays);
                 unitOfWork.History.Insert(new Domain.Entities.HistoryRecord(result));
-                unitOfWork.SaveChanges();
+                await unitOfWork.SaveChangesAsync();
                 return Ok(result);
             }
             catch (ArgumentOutOfRangeException)

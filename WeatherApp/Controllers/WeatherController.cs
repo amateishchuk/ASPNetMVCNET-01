@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using WeatherApp.Domain.Abstract;
 using WeatherApp.Domain.Entities;
@@ -16,14 +17,14 @@ namespace WeatherApp.Controllers
             weatherService = wService;
             this.unitOfWork = uow;
         }
-        public ActionResult GetWeather(string city = "Kiev", int qtyDays = 7)
+        public async Task<ActionResult> GetWeather(string city = "Kiev", int qtyDays = 7)
         {
             try
             {
-                var result = weatherService.GetWeather(city, qtyDays);
+                var result = await weatherService.GetWeatherAsync(city, qtyDays);
                 var record = new HistoryRecord(result);
                 unitOfWork.History.Insert(record);
-                unitOfWork.SaveChanges();
+                await unitOfWork.SaveChangesAsync();
 
                 return View(result);
             }

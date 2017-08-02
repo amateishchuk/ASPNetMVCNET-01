@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Web.Configuration;
 using WeatherApp.Domain.Abstract;
 using WeatherApp.OwmService;
+using System.Threading.Tasks;
 
 namespace WeatherApp.Domain.Concrete
 {
@@ -41,6 +42,19 @@ namespace WeatherApp.Domain.Concrete
                 throw;
             }
         }
+
+        public async Task<WeatherOwm> GetWeatherAsync(string city, int qtyDays)
+        {
+            string responseString = null;
+            var generatedLink = generateLink(city, qtyDays);
+            
+            using (var http = new HttpClient())
+            {
+                responseString = await http.GetStringAsync(generatedLink);                
+            }
+            return JsonConvert.DeserializeObject<WeatherOwm>(responseString);
+        }
+
         private string generateLink(string city, int qtyDays)
         {
             var generatedLink = apiUri
@@ -54,6 +68,6 @@ namespace WeatherApp.Domain.Concrete
         public void Dispose()
         {
             GC.SuppressFinalize(this);
-        }
+        }        
     }
 }

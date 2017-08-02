@@ -14,5 +14,10 @@ namespace WeatherApp.Domain.Abstract
         void Update(T item);
         void Delete(T item);
         T Get(Func<T, bool> predicate);
+        int Count { get; }
+
+        Task<IEnumerable<T>> GetAllAsync();
+        Task<T> GetAsync(Expression<Func<T, bool>> predicate);
+        Task<int> CountAsync();
     }
 }

@@ -63,5 +63,10 @@ namespace WeatherApp.Domain.Concrete
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+        public async Task SaveChangesAsync()
+        {
+            await context.SaveChangesAsync();
+        }
     }
 }

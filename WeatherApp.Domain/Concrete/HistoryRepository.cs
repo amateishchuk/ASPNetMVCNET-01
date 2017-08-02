@@ -17,6 +17,13 @@ namespace WeatherApp.Domain.Concrete
             this.context = context;
         }
 
+        public int Count => throw new NotImplementedException();
+
+        public Task<int> CountAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Delete(HistoryRecord item)
         {
             context.WeatherHistories.Remove(item);
@@ -30,6 +37,16 @@ namespace WeatherApp.Domain.Concrete
         public IEnumerable<HistoryRecord> GetAll()
         {
             return context.WeatherHistories.OrderByDescending(h => h.Id).ToList();
+        }
+
+        public Task<IEnumerable<HistoryRecord>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<HistoryRecord> GetAsync(Expression<Func<HistoryRecord, bool>> predicate)
+        {
+            throw new NotImplementedException();
         }
 
         public void Insert(HistoryRecord item)

@@ -19,6 +19,13 @@ namespace WeatherApp.Domain.Concrete
             this.context = context;
         }
 
+        public int Count => context.Cities.Count();
+
+        public async Task<int> CountAsync()
+        {
+            return await context.Cities.CountAsync();
+        }
+
         public void Delete(City city)
         {
            context.Cities.Remove(city);
@@ -29,26 +36,36 @@ namespace WeatherApp.Domain.Concrete
             return context.Cities.FirstOrDefault(predicate);
         }
 
+        public async Task<IEnumerable<City>> GetAllAsync()
+        {
+            return await context.Cities.ToListAsync();
+        }
+
         public IEnumerable<City> GetAll()
         {
             return context.Cities.ToList();
         }
 
-        public void Insert(City item)
+        public async Task<City> GetAsync(Expression<Func<City, bool>> predicate)
         {
-            var city = context.Cities.FirstOrDefault(c => c.Name == item.Name);
+            return await context.Cities.FirstOrDefaultAsync(predicate);
+        }
+
+        public async void Insert(City item)
+        {
+            var city = await context.Cities.FirstOrDefaultAsync(c => c.Name == item.Name);
             if (city == null)
                 context.Cities.Add(item);
         }
 
-        public void Update(City item)
+        public async void Update(City item)
         {
-            var cityInDb = context.Cities.Find(item.Id);
+            var cityInDb = await context.Cities.FindAsync(item.Id);
             
             if (cityInDb != null)
             {
                 context.Entry(cityInDb).CurrentValues.SetValues(item);
-                context.Entry(cityInDb).State = EntityState.Modified;
+                context.Entry(cityInDb).State = EntityState.Modified;                
             }            
         }
     }

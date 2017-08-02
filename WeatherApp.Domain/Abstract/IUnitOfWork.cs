@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using WeatherApp.Domain.Entities;
 
 namespace WeatherApp.Domain.Abstract
@@ -8,5 +9,6 @@ namespace WeatherApp.Domain.Abstract
         IRepository<City> Cities { get; }
         IRepository<HistoryRecord> History { get; }
         void SaveChanges();
+        Task SaveChangesAsync();
     }
 }
