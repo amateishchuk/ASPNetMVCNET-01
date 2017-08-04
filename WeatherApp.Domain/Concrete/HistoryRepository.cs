@@ -40,9 +40,9 @@ namespace WeatherApp.Domain.Concrete
             return context.WeatherHistories.OrderByDescending(h => h.Id).ToList();
         }
 
-        public Task<IEnumerable<HistoryRecord>> GetAllAsync()
+        public async Task<IEnumerable<HistoryRecord>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await context.WeatherHistories.OrderByDescending(h => h.Id).ToListAsync();
         }
 
         public Task<HistoryRecord> GetAsync(Expression<Func<HistoryRecord, bool>> predicate)

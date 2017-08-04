@@ -45,14 +45,19 @@ namespace WeatherApp.Domain.Concrete
 
         public async Task<WeatherOwm> GetWeatherAsync(string city, int qtyDays)
         {
+            if (String.IsNullOrEmpty(city) || string.IsNullOrWhiteSpace(city))
+                throw new ArgumentNullException();
+            else if (qtyDays < 1 || qtyDays > 16)
+                throw new ArgumentOutOfRangeException();
+
             string responseString = null;
             var generatedLink = generateLink(city, qtyDays);
             
             using (var http = new HttpClient())
             {
-                responseString = await http.GetStringAsync(generatedLink);                
+                responseString = await http.GetStringAsync(generatedLink);
             }
-            return JsonConvert.DeserializeObject<WeatherOwm>(responseString);
+            return JsonConvert.DeserializeObject<WeatherOwm>(responseString);            
         }
 
         private string generateLink(string city, int qtyDays)
